@@ -1,0 +1,1070 @@
+<!DOCTYPE html>
+
+<meta charset="utf-8">
+<title>SOA you want to be Service-Oriented</title>
+
+<!-- Your Slides -->
+<!-- One section is one slide -->
+
+<section class="title">
+  <h1>PIEfection</h1>
+  <footer style="font-size: 50%">
+    James Socol<br>
+    ManhattanJS<br>
+    13 Jan 2016
+  </footer>
+  <details>
+    Thanks to whichever of our wonderful hosts came up with the title of this talk!
+  </details>
+</section>
+
+<section class="title">
+  <h1>π</h1>
+  <details>
+    And just to be clear, I don't mean the wonderful, transcendental number.
+  </details>
+</section>
+
+<section class="title">
+  <h1><del>π</del></h1>
+  <details>
+    No.
+  </details>
+</section>
+
+<section>
+  <img src="images/fuck-yeah-pie.jpg" height="100%" width="100%"
+  data-source="https://www.flickr.com/photos/greenshock/44793290/in/photolist-4Xzu7-86p5Yc-sjemvT-75BfbV-gtVjq-3A8nQ-6BCtYs-aAH1YL-jW2Xb-6zThq9-6PhaFr-thjv5-6zirBr-jPyWca-risXt8-8JzoGv-hNz5ra-ucaqj-dG1gw-5LCnB-7Qyngc-56ck4w-4ZoYR-7KSdrt-ehMCSH-4o4WkK-x6gZN-6ATjTt-j33zn-n74Vuv-867NkM-kYKYRK-7nSFnf-4GGBc6-4dsaxS-4VFYVa-8SuSum-xJAuFt-83BHTX-5htKsm-5ofbE-8ETVxn-bp3ac-87PtGX-FVFGv-nL82TY-7yQiq7-aggcL1-uJ94-8NzB4o">
+  <details>
+    I mean the wonderful, transcendental food.
+  </details>
+</section>
+
+<section>
+  <h1>Hi</h1>
+  <details>
+    Hi, I'm James. I'm in no way <em>qualified</em> to talk about this, but I love pie. And I think
+    that's qualification enough.<br>
+    I do code things. I'm starting at Cond&eacute; Nast this month. We use a lot of JavaScript.
+  </details>
+</section>
+
+<section>
+  <img src="images/American_Pie_Council_logo.jpg" height="100%" width="100%"
+  data-source="https://en.wikipedia.org/wiki/File:American_Pie_Council_logo.jpg">
+  <details>
+  This talk is <em>not</em> sanctioned by this organization
+  </details>
+</section>
+
+<section>
+  <h3>Where we're going</h3>
+  <ol class="incremental">
+    <li>What is pie?</li>
+    <li>History</li>
+    <li>Science and technique</li>
+  </ol>
+</section>
+
+<section>
+  <h1>What <em>is</em> pie?</h1>
+  <details>
+    Show of hands, who thinks they know what pie is?<br>
+    Difficult to nail down!
+  </details>
+</section>
+
+<section>
+  <img src="images/blueberry-pie.jpg" height="100%" width="100%"
+  data-source="https://www.flickr.com/photos/leguiphoto/17271578365/in/photolist-sjemvT-75BfbV-gtVjq-3A8nQ-6BCtYs-aAH1YL-jW2Xb-6zThq9-6PhaFr-thjv5-6zirBr-jPyWca-risXt8-8JzoGv-hNz5ra-ucaqj-dG1gw-5LCnB-7Qyngc-56ck4w-4ZoYR-7KSdrt-ehMCSH-4o4WkK-x6gZN-6ATjTt-j33zn-n74Vuv-867NkM-kYKYRK-7nSFnf-4GGBc6-4dsaxS-4VFYVa-8SuSum-xJAuFt-83BHTX-5htKsm-5ofbE-8ETVxn-bp3ac-87PtGX-FVFGv-nL82TY-7yQiq7-aggcL1-uJ94-8NzB4o-Spcus-8JzoKt">
+  <details>
+    Some things are obviously pie, like this delicious-looking blueberry pie
+  </details>
+</section>
+
+<section>
+  <img src="images/lemon-pie.jpg" height="100%" width="100%"
+  data-source="https://www.flickr.com/photos/ginnerobot/3665234144/in/photolist-6zThq9-6PhaFr-thjv5-6zirBr-jPyWca-risXt8-8JzoGv-hNz5ra-ucaqj-dG1gw-5LCnB-7Qyngc-56ck4w-4ZoYR-7KSdrt-ehMCSH-4o4WkK-x6gZN-6ATjTt-j33zn-n74Vuv-867NkM-kYKYRK-7nSFnf-4GGBc6-4dsaxS-4VFYVa-8SuSum-xJAuFt-83BHTX-5htKsm-5ofbE-8ETVxn-bp3ac-87PtGX-FVFGv-nL82TY-7yQiq7-aggcL1-uJ94-8NzB4o-Spcus-8JzoKt-y25kRZ-5AFeMN-92F9ZA-nDhJW-evmta-d33bY1-iczqDY">
+  <details>Or this lemon pie.</details>
+</section>
+
+<section>
+  <img src="images/shepherds-pie.jpg" height="100%" width="100%"
+  data-source="https://www.flickr.com/photos/dn/3211958376/in/photolist-5TQ8jG-9S1QjX-9rG2LC-CRHNkX-CGb6x7-aAY2fm-fqc483-6sCDNu-9T8cvs-9wcfdp-9wfguN-9wceMX-9wffqu-9rG2AA-9S4JJj-9wceGx-9wcewp-9wce2Z-isr3Q1-7CHijq-9dSCnd-9wfakb-9wffCh-AxXg1c-dftmiH-48PtpU-9wce9B-9wceUa-9wceex-9wffkS-9wfa8A-9wfgad-9wffUm-9wcepF-9wffgb-9wcdXp-9wcfiM-daAmX-MrbWo-daAmW-dWGqMg-9S8Cec-b1fAN-BfVx-6HUXCn-7SjBVJ-9qsGfu-arPtbL-6QebAP-8tDLyQ">
+  <details>Some things are obviously not, even though they may be called pie, like this Shepherd's
+  Pie</details>
+</section>
+
+<section>
+  <img src="images/pork-pie.jpg" height="100%" width="100%"
+  data-source="https://www.flickr.com/photos/su-lin/319039806/in/photolist-ucaqj-dG1gw-5LCnB-7Qyngc-56ck4w-4ZoYR-7KSdrt-ehMCSH-4o4WkK-x6gZN-6ATjTt-j33zn-n74Vuv-867NkM-kYKYRK-7nSFnf-4GGBc6-4dsaxS-4VFYVa-8SuSum-xJAuFt-83BHTX-5htKsm-5ofbE-8ETVxn-bp3ac-87PtGX-FVFGv-nL82TY-7yQiq7-aggcL1-uJ94-8NzB4o-Spcus-8JzoKt-y25kRZ-5AFeMN-92F9ZA-nDhJW-evmta-d33bY1-iczqDY-ri4q88-5EupZi-8UEH5A-48oJtc-cnBjwj-rnzp2K-6DCzqK-nzRPp5">
+  <details>We definitely want to allow savory pies, like chicken pot pie, or this pork
+  pie</details>
+</section>
+
+<section>
+  <img src="images/lamb-and-chicken-pie.jpg" height="100%" width="100%"
+  data-source="https://www.flickr.com/photos/roland/5573525/in/photolist-8ZUnoq-dMg3Y-etZWQs-uyPg-b78XK-uyPY-zjUD5d-rktZeS-bqWcjL-a8NqLR-6Jcs6U-uyNK-uyMZ-dd6eP8-hrtvd-5U4soY-8uzRUP-2uzCKp-9QaaJL-YMd5">
+  <details>Or this lamb-and-chicken pie</details>
+</section>
+
+<section>
+  <img src="images/plum-tart.jpg" height="100%" width="100%"
+  data-source="https://www.flickr.com/photos/akane86/15317921899/in/photolist-pkAmvH-8rL8ZB-vXnR7E-pkBxpd-fj6v1m-bG8wAF-aG7VF2-aG7RUn-35sdiM-vHcAAH-vH5DK3-6QVVzw-vZGdEk-8JL5Bt-8JL5Jz-9Dpfnr-fmY3uE-aot8sK-9jyfDX-49S3YT-8wM8tf-pcZ93G-oVwPmB-pd22R2-5cJUXz-64UDEh-64QmTk-534m3W-35wLCL-534kv3-6CGZfh-98sKdF-5pK1e2-pc4pP-71SqNV-gcTZpA-5pK1gT-97p6ZJ-8yMuTM-8bnyhd-8bjh9P-8bjgVV-8b5A3X-98vNS1-6FxAg5-34uqt7-5cPdU7-oVwg1h-pd22DD-dgPMSq">
+  <details>
+  Some things get a little more complicated, though. What about this plum tart?
+  </details>
+</section>
+
+<section>
+  <img src="images/apple-galette.jpg" height="100%" width="100%"
+  data-source="https://www.flickr.com/photos/ozten/5152977136/in/photolist-kWUD3-8Rmmzo">
+  <details>
+  Or this apple galette? How is it really different from an apple pie?
+  </details>
+</section>
+
+<section>
+  <img src="images/lombardis-pizza.jpg" height="100%" width="100%"
+  data-source="https://www.flickr.com/photos/katrinaebowman/5340219207/in/photolist-98U27X-875nXM-4Bi3iN-bJsZGn-bJsZKK-GGZ1X-8cgPKN-4JLdER-aWj2zz-5xjHvJ-9Ut9Sv-96ZufH-brJeYu-9eZNJ3-39EANT-8krNdL-9f7k6k-bsCcrX-6sWGXS-brJeZ1-39EB5a-vcgnEt-94Sd5h-8t4oTb-bkFF16-8sY7ei-7brBDc-8t2c6b-ajtuuj-6iAQE7-4ZW3z5-4JWUdX-5wepF1-882gee-oCL7G-875oDp-5DXuqb-7ysvrH-aafr9p-97Qi6m-878z9d-e5roxv-8t4hDo-8t1i1X-8t1fzF-8t4jj1-wMbTNq-fABD7G-aiKifC-zFw4x">
+  <details>
+  What about this famous "pie"? Probably not
+  </details>
+</section>
+
+<section>
+  <img src="images/deep-dish-pizza.jpg" height="100%" width="100%"
+  data-source="https://www.flickr.com/photos/muyyum/5576451284/in/photolist-9uLLFN-9uLLM3-jGxQt1-jGwo3r-82K4HC-4UtbUj-inUeqL-c9JcZ9-95vwD8-616f7U-9YaFkc-bGb2J-rNsEKX-bGaZ5-7x6EWy-7DLzAd-4cUodM-61oRuP-a2Kkue-6UWjt8-9Ng5Ks-eYgc7g-dN7RPG-dN9NDY-7x6EKJ-85YaHp-7YHoPD-4VhEDd-4VhEC3-cmbYws-cmbYVE-7nBQXR-4x5TzV-8wVnyA-7nFKMY-9N2XCX-aZTv7H-fM6vps-aMzegx-fM6sj7-5Xeha7-9joo4T-fLNV9i-7P3V5y-fM6ts9-8Lrivy-7w7E4G-owyzw9-oRY1AM-mHpoKx">
+  <details>
+  But this one?
+  </details>
+</section>
+
+<section>
+  <img src="images/calzone.jpg" height="100%" width="100%"
+  data-source="https://www.flickr.com/photos/reid-bee/3516911329/in/photolist-6mM6de-5ZXRub-5jSxfo-8LyiDt-2yi6aF-2ynwwL-bf2GgP-5jSxhb-8KeDoy-6xUEko-6urXxi-2yi6ir-gsG3JM-dSPR9a-4E5dRk-5K9jB2-cuVkV-4DqULH-dkRtAS-6hFna3-81QBep-rwqaCE-dz5bnH-kmgXL-53JtF-aGnzuv-dJqPJk-aGnzDF-8i8gD2-8uqHnq-63XYrr-8ibtRy-c5uxUo-8i8hfT-aGnzyX-8KeDkd-8ibtaA-gsGCoi-6mRf4b-oTy5U3-9j4coc-8y7hHE-9o3f4P-dCW3ZC-4PevjQ-7Ubk7T-63XYNt-fPQ1R-jMtrs-bxMpDH">
+  <details>
+  Fortunately I think we can all agree on the calzone
+  </details>
+</section>
+
+<section>
+  <img src="images/betrayal.gif" height="100%" width="100%">
+  <details>
+  </details>
+</section>
+
+<section>
+  <h1>History of Pie</h1>
+  <details>
+  Maybe a look at the history of pie will help.
+  </details>
+</section>
+
+<section>
+  <h1>4-6,000 years old</h1>
+  <details>
+  The original forerunners of pie were around almost as soon as we had agriculture.
+  </details>
+</section>
+
+<section>
+  <img src="images/AssyrianWarship.jpg" height="100%" width="100%"
+  data-source="https://en.wikipedia.org/wiki/Bireme#/media/File:AssyrianWarship.jpg">
+  <details>
+  Long journeys, especially by sea, required preserving food. Baking grain flour and water was an
+  early method. If you've never hard "hard tack," you're really not missing out.
+  </details>
+</section>
+
+<section>
+  <img src="images/Galette_des_Rois.png" height="100%" width="100%"
+  data-source="https://en.wikipedia.org/wiki/Galette#/media/File:Galette_des_Rois.png">
+  <details>
+  4,000 years ago, there's a Sumerian recipe for chicken pie.<br>
+  There were pastry (dough with fat, more later) recipes around in antiquity.<br>
+  By c 3,500ya, Egyptians were baking sweet galette-like pastries with honey filling.
+  </details>
+</section>
+
+<section>
+  <details>
+  For a very long time, this is what food <em>was</em>.<br>
+  Hard "dough", local flour, salt and water.<br>
+  Baking vessel, storage, serving. Local grains/bakers.<br>
+  Meats and sauces, mostly.
+  </details>
+</section>
+
+<section>
+  <img src="images/coffin.jpg" height="100%" width="100%"
+  data-source="https://en.wikipedia.org/wiki/Coffin#/media/File:Plain_bespoke_stone_coffin.JPG">
+  <details>
+  By the middle ages, pies, known as "coffyns", the word for "box" were thick-sided, with no extra
+  dish. Rich folks ate the filling, <em>maybe</em> the poor ate the sauce-soaked grain.<br>
+  </details>
+</section>
+
+<section>
+  <img src="images/magpie.jpg" height="100%" width="100%"
+  data-source="https://en.wikipedia.org/wiki/Eurasian_magpie#/media/File:Pica_pica_-_Compans_Caffarelli_-_2012-03-16.jpg">
+  <details>
+  The English word "pie" <em>seems, maybe</em> to come from the word "magpie," maybe. No one really knows.
+  Magpies collect things, pies were filled with whatever.
+  </details>
+</section>
+
+<section>
+  <img src="images/pilgrims.jpg" height="100%" width="100%"
+  data-source="https://en.wikipedia.org/wiki/Pilgrim_Fathers#/media/File:Robert_Walter_Weir_-_Embarkation_of_the_Pilgrims_-_Google_Art_Project.jpg">
+  <details>
+  Pies came to the new world with settlers like the pilgrims.
+  </details>
+</section>
+
+<section>
+  <img src="images/pumpkins.jpg" height="100%" width="100%"
+  data-source="https://en.wikipedia.org/wiki/Pumpkin#/media/File:Pumpkins.jpg">
+  <details>
+  Europeans had been making gourd pies for a long time. When they discovered the pumpkin, they
+  started using it immediately.
+  </details>
+</section>
+
+<section>
+  <img src="images/pie-lab-crust.jpg" height="100%" width="100%"
+  data-source="http://sweets.seriouseats.com/2011/07/the-food-lab-the-science-of-pie-how-to-make-pie-crust-easy-recipe.html">
+  <details>
+  To make the leap from a coffyn to a modern pie, we need pastry. Pastry was known in antiquity but
+  returns in cookbooks around the 16th century.<br>
+  These thin pastry crusts give us recognizable, modern pie.
+  </details>
+</section>
+
+<section>
+  <h3>What is pie?</h3>
+  <ul class="incremental">
+    <li>Baked</li>
+    <li>With a pastry crust</li>
+  </ul>
+  <details>
+  So what is pie? Well it's tough to define, but these are definitely things we want. So pizza's
+  out, no pastry.
+  </details>
+</section>
+
+<section>
+  <h1>Science!</h1>
+</section>
+
+<section>
+  <h2>
+    <a href="http://bit.ly/SciOfPie">bit.ly/SciOfPie</a><br>
+    J Kenji L&oacute;pez-Alt
+  </h2>
+  <details>
+    A lot of what I'm about to say comes from Food Lab, the other big source is Master of Social
+    Gastronomy, and Jonathan Soma in particular.<br>
+    Most of the images are from Food Lab, too.
+  </details>
+</section>
+
+<section>
+  <h1>Gluten</h1>
+</section>
+
+<section>
+  <img src="images/gluten.jpg" height="100%" width="100%"
+  data-source="http://www.everythingpies.com/pie-crust-flour-gluten/">
+  <details>
+  The structure of pastry—and bread—comes from gluten. Gluten is a complex of two proteins, gliadin
+  and glutenin.
+  </details>
+</section>
+
+<section>
+  <img src="images/bread-structure.jpg" height="100%" width="100%"
+  data-source="http://www.seriouseats.com/2011/06/the-food-lab-the-science-of-no-knead-dough.html">
+  <details>
+  Gluten forms when these two proteins come into contact with water and are mixed together, usually
+  by kneading.<br>
+  Different amounts of water, kneading, and flour protein change how structural the dough will be.
+  </details>
+</section>
+
+<section>
+  <h3>What is pastry?</h3>
+  <ol class="incremental">
+    <li>Flour (gliadin and glutenin)</li>
+    <li>Fat</li>
+    <li>Water</li>
+  </ol>
+</section>
+
+<section>
+  <img src="images/balls-of-fat.jpg" height="100%" width="100%"
+  data-source="http://www.huffingtonpost.com/food-52/all-about-pie-fats-butter_b_4320372.html">
+  <details>
+  What you're doing is creating little balls of fat coated in flour—gliadin and glutenin.
+  </details>
+</section>
+
+<section>
+  <img src="images/pie-chart.jpg" height="100%" width="100%"
+  data-source="http://www.radiolab.org/story/275745-pies-will-cure-nothing/">
+  <details>
+  Then when you add water, and knead it a little (not too much) you cause gluten to form on the
+  outside of the balls.<br>
+  When you roll it out, you get sheets of gluten layered between sheets of fat.<br>
+  These layers are "flaky" pie crust!
+  </details>
+</section>
+
+<section>
+  <img src="images/vodka.jpg" height="100%" width="100%"
+  data-source="http://www.telegraph.co.uk/men/the-filter/10478694/Thinking-Drinkers-a-beginners-guide-to-vodka.html">
+  <details>
+  What about vodka? Or cold water? Or frozen butter?<br>
+  "Cold" stuff is all about working the dough. As it warms up, it sticks to things.<br>
+  Vodka has less water, so means less gluten forms.
+  </details>
+</section>
+
+<section>
+  <img src="images/blended-butter.jpg" height="100%" width="100%"
+  data-source="http://sweets.seriouseats.com/2011/07/the-food-lab-the-science-of-pie-how-to-make-pie-crust-easy-recipe.html">
+  <details>
+  Using a food processor, blend 70%-ish of the flour and all the butter. Incorporates some of the
+  dry flour into the butter.
+  </details>
+</section>
+
+<section>
+  <img src="images/food-processor.jpg" height="100%" width="100%"
+  data-source="http://sweets.seriouseats.com/2011/07/the-food-lab-the-science-of-pie-how-to-make-pie-crust-easy-recipe.html">
+  <details>
+  Then add remaining dry flour and water, pulse a little, and knead (a little) by hand. Stick in
+  the fridge. Creates layers of dry, non-glutenated flour between layers of fat between layers of
+  gluten. More flaky!
+  </details>
+</section>
+
+<section>
+  <h1>Fillings</h1>
+  <details>
+  Don't really have time, but ask me. Or if I have time, I'll just ramble for a minute. Fruit pies,
+  pre-bake, use arrowroot. Custard pies, don't pre-bake, let it soak into the crust.<br>
+  </details>
+</section>
+
+<section>
+  <img src="images/newton-pippin.jpg" height="100%" width="100%"
+  data-source="https://goodeggs2.imgix.net/product_photos/D58RP5CSdeLNXK37PYrX_Apples,-Pippin.jpg?w=840&h=525&fm=jpg&q=80&fit=crop">
+  <details>
+  Apples: Try Newton Pippin apples. Fuji, Ambrosia, Honeycrisp.
+  </details>
+</section>
+
+<section>
+  <img src="images/libbys.jpg" height="100%" width="100%"
+  data-source="http://www.businessinsider.com/pumpkin-spice-latte-doesnt-have-pumpkin-2014-10">
+  <details>
+  Don't roast pumpkins. Use libby's. Tastes more like "pumpkin." Lots of things can be called
+  "pumpkin," including a lot of squashes
+  </details>
+</section>
+
+<section>
+  <h3>Tools</h3>
+  <ul class="incremental">
+    <li>Food-processor</li>
+    <li>Roul-pat, flexible work surface</li>
+    <li>French rolling pin</li>
+  </ul>
+  <details>
+  </details>
+</section>
+
+<section>
+  <h1>github.com/jsocol</h1>
+</section>
+
+<section class="title">
+  <h2>Thank you!</h2>
+</section>
+
+<!-- Your Style -->
+<!-- Define the style of your presentation -->
+
+<style>
+  @font-face {
+      font-family: 'MuseoSans900';
+      src: url('font/MuseoSans_900-webfont.woff') format('woff');
+      font-weight: 900;
+      font-style: normal;
+  }
+  @font-face {
+      font-family: 'CallunaRegular';
+      src: url('font/Calluna-Regular-webfont.woff') format('woff');
+      font-weight: normal;
+      font-style: normal;
+  }
+  html, .view body { background-color: black; counter-reset: slideidx; }
+  body, .view section { background-color: white; border-radius: 12px }
+  /* A section is a slide. It's size is 800x600, and this will never change */
+  section, .view head > title {
+      /* The font from Google */
+      font-family: 'CallunaRegular', arial, serif;
+      font-size: 30px;
+  }
+
+  .view section:after {
+    counter-increment: slideidx;
+    content: counter(slideidx, decimal-leading-zero);
+    position: absolute; bottom: -80px; right: 100px;
+    color: white;
+  }
+
+  .view head > title {
+    color: white;
+    margin: 1em 0 1em 0;
+    text-align: center;
+  }
+
+  h1, h2 {
+    font-family: 'MuseoSans900', Arial, sans-serif;
+    font-size: 80px;
+    margin-top: 200px;
+    text-align: center;
+  }
+  h3 {
+    font-family: 'MuseoSans900', Arial, sans-serif;
+    font-size: 48px;
+    margin: 60px 0 30px 100px;
+  }
+
+  ol, ul {
+      font-size: 130%;
+      margin: 30px 100px;
+  }
+
+  section > ol:first-child,
+  section > ul:first-child {
+    margin-top: 50px;
+  }
+
+  p {
+    margin: 75px;
+    font-size: 50px;
+  }
+
+  blockquote {
+    height: 100%;
+    background-color: black;
+    color: white;
+    font-size: 60px;
+    padding: 50px;
+  }
+  blockquote:before {
+    content: open-quote;
+  }
+  blockquote:after {
+    content: close-quote;
+  }
+  pre {
+    height: 100%;
+    width: 100%;
+    background-color: white;
+    color: black;
+    font-size: 36px;
+    padding: 20px;
+  }
+
+
+  /* Figures are displayed full-page, with the caption
+     on top of the image/video */
+  figure {
+    background-color: white;
+    width: 100%;
+    height: 100%;
+  }
+  figure > * {
+    position: absolute;
+  }
+  figure > img, figure > video {
+    width: 100%; height: 100%;
+  }
+  figcaption {
+    margin: 70px;
+    font-size: 50px;
+  }
+
+  footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 40px;
+    text-align: right;
+    background-color: #F3F4F8;
+    border-top: 1px solid #CCC;
+  }
+
+  /* Transition effect */
+  /* Feel free to change the transition effect for original
+     animations. See here:
+     https://developer.mozilla.org/en/CSS/CSS_transitions
+     How to use CSS3 Transitions: */
+  section {
+    -moz-transition: left 400ms linear 0s;
+    -webkit-transition: left 400ms linear 0s;
+    -ms-transition: left 400ms linear 0s;
+    transition: left 400ms linear 0s;
+  }
+  .view section {
+    -moz-transition: none;
+    -webkit-transition: none;
+    -ms-transition: none;
+    transition: none;
+  }
+
+  .view section[aria-selected] {
+    border: 5px red solid;
+  }
+
+  /* Before */
+  section { left: -150%; }
+  /* Now */
+  section[aria-selected] { left: 0; }
+  /* After */
+  section[aria-selected] ~ section { left: +150%; }
+
+  /* Incremental elements */
+
+  /* By default, visible */
+  .incremental > * { opacity: 1; }
+
+  /* The current item */
+  .incremental > *[aria-selected] { opacity: 1; }
+
+  /* The items to-be-selected */
+  .incremental > *[aria-selected] ~ * { opacity: 0; }
+
+  /* The progressbar, at the bottom of the slides, show the global
+     progress of the presentation. */
+  #progress-bar {
+    height: 2px;
+    background: #AAA;
+  }
+
+  .title footer {
+    background-image: url(images/js-magenta-200.png);
+    background-position: bottom left;
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+  figure > img.center {
+    width: auto;
+    left: 25%;
+  }
+  figure > img.vscale {
+    height: auto;
+    position: relative;
+  }
+  div.figure {
+    margin-top: 10%;
+    text-align: center;
+  }
+  pre.lowlight {
+    color: #999;
+  }
+  pre.lowlight strong {
+    color: #000;
+  }
+</style>
+
+<!-- {{{{ dzslides core
+#
+#
+#     __  __  __       .  __   ___  __
+#    |  \  / /__` |    | |  \ |__  /__`
+#    |__/ /_ .__/ |___ | |__/ |___ .__/ core :€
+#
+#
+# The following block of code is not supposed to be edited.
+# But if you want to change the behavior of these slides,
+# feel free to hack it!
+#
+-->
+
+<div id="progress-bar"></div>
+
+<!-- Default Style -->
+<style>
+  * { margin: 0; padding: 0; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
+  details { display: none; }
+  body {
+    width: 800px; height: 600px;
+    margin-left: -400px; margin-top: -300px;
+    position: absolute; top: 50%; left: 50%;
+    overflow: hidden;
+    display: none;
+  }
+  .view body {
+    position: static;
+    margin: 0; padding: 0;
+    width: 100%; height: 100%;
+    display: inline-block;
+    overflow: visible; overflow-x: hidden;
+    /* undo Dz.onresize */
+    transform: none !important;
+    -moz-transform: none !important;
+    -webkit-transform: none !important;
+    -o-transform: none !important;
+    -ms-transform: none !important;
+  }
+  .view head, .view head > title { display: block }
+  section {
+    position: absolute;
+    pointer-events: none;
+    width: 100%; height: 100%;
+  }
+  .view section {
+    pointer-events: auto;
+    position: static;
+    width: 800px; height: 600px;
+    margin: -150px -200px;
+    float: left;
+
+    transform: scale(.4);
+    -moz-transform: scale(.4);
+    -webkit-transform: scale(.4);
+    -o-transform: scale(.4);
+    -ms-transform: scale(.4);
+  }
+  .view section > * { pointer-events: none; }
+  section[aria-selected] { pointer-events: auto; }
+  html { overflow: hidden; }
+  html.view { overflow: visible; }
+  body.loaded { display: block; }
+  .incremental {visibility: hidden; }
+  .incremental[active] {visibility: visible; }
+  #progress-bar{
+    bottom: 0;
+    position: absolute;
+    -moz-transition: width 400ms linear 0s;
+    -webkit-transition: width 400ms linear 0s;
+    -ms-transition: width 400ms linear 0s;
+    transition: width 400ms linear 0s;
+  }
+  .view #progress-bar {
+    display: none;
+  }
+</style>
+
+<script>
+  var Dz = {
+    remoteWindows: [],
+    idx: -1,
+    step: 0,
+    html: null,
+    slides: null,
+    progressBar : null,
+    params: {
+      autoplay: "1"
+    }
+  };
+
+  Dz.init = function() {
+    document.body.className = "loaded";
+    this.slides = Array.prototype.slice.call($$("body > section"));
+    this.progressBar = $("#progress-bar");
+    this.html = document.body.parentNode;
+    this.setupParams();
+    this.onhashchange();
+    this.setupTouchEvents();
+    this.onresize();
+    this.setupView();
+    this.vcenterImages();
+  }
+
+  Dz.vcenterImages = function() {
+    var imgs = $$('img.vscale');
+    var middle = $('body').offsetHeight / 2;
+    for (var i = 0; i < imgs.length; i++) {
+      var t = middle - imgs[i].height / 2;
+      imgs[i].style.top = t + "px";
+    }
+  }
+
+  Dz.setupParams = function() {
+    var p = window.location.search.substr(1).split('&');
+    p.forEach(function(e, i, a) {
+      var keyVal = e.split('=');
+      Dz.params[keyVal[0]] = decodeURIComponent(keyVal[1]);
+    });
+  // Specific params handling
+    if (!+this.params.autoplay)
+      $$.forEach($$("video"), function(v){ v.controls = true });
+  }
+
+  Dz.onkeydown = function(aEvent) {
+    // Don't intercept keyboard shortcuts
+    if (aEvent.altKey
+      || aEvent.ctrlKey
+      || aEvent.metaKey
+      || aEvent.shiftKey) {
+      return;
+    }
+    if ( aEvent.keyCode == 37 // left arrow
+      || aEvent.keyCode == 38 // up arrow
+      || aEvent.keyCode == 33 // page up
+    ) {
+      aEvent.preventDefault();
+      this.back();
+    }
+    if ( aEvent.keyCode == 39 // right arrow
+      || aEvent.keyCode == 40 // down arrow
+      || aEvent.keyCode == 34 // page down
+    ) {
+      aEvent.preventDefault();
+      this.forward();
+    }
+    if (aEvent.keyCode == 35) { // end
+      aEvent.preventDefault();
+      this.goEnd();
+    }
+    if (aEvent.keyCode == 36) { // home
+      aEvent.preventDefault();
+      this.goStart();
+    }
+    if (aEvent.keyCode == 32) { // space
+      aEvent.preventDefault();
+      this.toggleContent();
+    }
+    if (aEvent.keyCode == 70) { // f
+      aEvent.preventDefault();
+      this.goFullscreen();
+    }
+    if (aEvent.keyCode == 79) { // o
+      aEvent.preventDefault();
+      this.toggleView();
+    }
+  }
+
+  /* Touch Events */
+
+  Dz.setupTouchEvents = function() {
+    var orgX, newX;
+    var tracking = false;
+
+    var db = document.body;
+    db.addEventListener("touchstart", start.bind(this), false);
+    db.addEventListener("touchmove", move.bind(this), false);
+
+    function start(aEvent) {
+      aEvent.preventDefault();
+      tracking = true;
+      orgX = aEvent.changedTouches[0].pageX;
+    }
+
+    function move(aEvent) {
+      if (!tracking) return;
+      newX = aEvent.changedTouches[0].pageX;
+      if (orgX - newX > 100) {
+        tracking = false;
+        this.forward();
+      } else {
+        if (orgX - newX < -100) {
+          tracking = false;
+          this.back();
+        }
+      }
+    }
+  }
+
+  Dz.setupView = function() {
+    document.body.addEventListener("click", function ( e ) {
+      if (!Dz.html.classList.contains("view")) return;
+      if (!e.target || e.target.nodeName != "SECTION") return;
+
+      Dz.html.classList.remove("view");
+      Dz.setCursor(Dz.slides.indexOf(e.target) + 1);
+    }, false);
+  }
+
+  /* Adapt the size of the slides to the window */
+
+  Dz.onresize = function() {
+    var db = document.body;
+    var sx = db.clientWidth / window.innerWidth;
+    var sy = db.clientHeight / window.innerHeight;
+    var transform = "scale(" + (1/Math.max(sx, sy)) + ")";
+
+    db.style.MozTransform = transform;
+    db.style.WebkitTransform = transform;
+    db.style.OTransform = transform;
+    db.style.msTransform = transform;
+    db.style.transform = transform;
+  }
+
+
+  Dz.getDetails = function(aIdx) {
+    var s = $("section:nth-of-type(" + aIdx + ")");
+    var d = s.$("details");
+    return d ? d.innerHTML : "";
+  }
+
+  Dz.onmessage = function(aEvent) {
+    var argv = aEvent.data.split(" "), argc = argv.length;
+    argv.forEach(function(e, i, a) { a[i] = decodeURIComponent(e) });
+    var win = aEvent.source;
+    if (argv[0] === "REGISTER" && argc === 1) {
+      this.remoteWindows.push(win);
+      this.postMsg(win, "REGISTERED", document.title, this.slides.length);
+      this.postMsg(win, "CURSOR", this.idx + "." + this.step);
+      return;
+    }
+    if (argv[0] === "BACK" && argc === 1)
+      this.back();
+    if (argv[0] === "FORWARD" && argc === 1)
+      this.forward();
+    if (argv[0] === "START" && argc === 1)
+      this.goStart();
+    if (argv[0] === "END" && argc === 1)
+      this.goEnd();
+    if (argv[0] === "TOGGLE_CONTENT" && argc === 1)
+      this.toggleContent();
+    if (argv[0] === "SET_CURSOR" && argc === 2)
+      window.location.hash = "#" + argv[1];
+    if (argv[0] === "GET_CURSOR" && argc === 1)
+      this.postMsg(win, "CURSOR", this.idx + "." + this.step);
+    if (argv[0] === "GET_NOTES" && argc === 1)
+      this.postMsg(win, "NOTES", this.getDetails(this.idx));
+  }
+
+  Dz.toggleContent = function() {
+    // If a Video is present in this new slide, play it.
+    // If a Video is present in the previous slide, stop it.
+    var s = $("section[aria-selected]");
+    if (s) {
+      var video = s.$("video");
+      if (video) {
+        if (video.ended || video.paused) {
+          video.play();
+        } else {
+          video.pause();
+        }
+      }
+    }
+  }
+
+  Dz.setCursor = function(aIdx, aStep) {
+    // If the user change the slide number in the URL bar, jump
+    // to this slide.
+    aStep = (aStep != 0 && typeof aStep !== "undefined") ? "." + aStep : ".0";
+    window.location.hash = "#" + aIdx + aStep;
+  }
+
+  Dz.onhashchange = function() {
+    var cursor = window.location.hash.split("#"),
+        newidx = 1,
+        newstep = 0;
+    if (cursor.length == 2) {
+      newidx = ~~cursor[1].split(".")[0];
+      newstep = ~~cursor[1].split(".")[1];
+      if (newstep > Dz.slides[newidx - 1].$$('.incremental > *').length) {
+        newstep = 0;
+        newidx++;
+      }
+    }
+    this.setProgress(newidx, newstep);
+    if (newidx != this.idx) {
+      this.setSlide(newidx);
+    }
+    if (newstep != this.step) {
+      this.setIncremental(newstep);
+    }
+    for (var i = 0; i < this.remoteWindows.length; i++) {
+      this.postMsg(this.remoteWindows[i], "CURSOR", this.idx + "." + this.step);
+    }
+  }
+
+  Dz.back = function() {
+    if (this.idx == 1 && this.step == 0) {
+      return;
+    }
+    if (this.step == 0) {
+      this.setCursor(this.idx - 1,
+                     this.slides[this.idx - 2].$$('.incremental > *').length);
+    } else {
+      this.setCursor(this.idx, this.step - 1);
+    }
+  }
+
+  Dz.forward = function() {
+    if (this.idx >= this.slides.length &&
+        this.step >= this.slides[this.idx - 1].$$('.incremental > *').length) {
+        return;
+    }
+    if (this.step >= this.slides[this.idx - 1].$$('.incremental > *').length) {
+      this.setCursor(this.idx + 1, 0);
+    } else {
+      this.setCursor(this.idx, this.step + 1);
+    }
+  }
+
+  Dz.goStart = function() {
+    this.setCursor(1, 0);
+  }
+
+  Dz.goEnd = function() {
+    var lastIdx = this.slides.length;
+    var lastStep = this.slides[lastIdx - 1].$$('.incremental > *').length;
+    this.setCursor(lastIdx, lastStep);
+  }
+
+  Dz.toggleView = function() {
+    this.html.classList.toggle("view");
+
+    if (this.html.classList.contains("view")) {
+      $("section[aria-selected]").scrollIntoView(true);
+    }
+  }
+
+  Dz.setSlide = function(aIdx) {
+    this.idx = aIdx;
+    var old = $("section[aria-selected]");
+    var next = $("section:nth-of-type("+ this.idx +")");
+    if (old) {
+      old.removeAttribute("aria-selected");
+      var video = old.$("video");
+      if (video) {
+        video.pause();
+      }
+    }
+    if (next) {
+      next.setAttribute("aria-selected", "true");
+      if (this.html.classList.contains("view")) {
+        next.scrollIntoView();
+      }
+      var video = next.$("video");
+      if (video && !!+this.params.autoplay) {
+        video.play();
+      }
+    } else {
+      // That should not happen
+      this.idx = -1;
+      // console.warn("Slide doesn't exist.");
+    }
+  }
+
+  Dz.setIncremental = function(aStep) {
+    this.step = aStep;
+    var old = this.slides[this.idx - 1].$('.incremental > *[aria-selected]');
+    if (old) {
+      old.removeAttribute('aria-selected');
+    }
+    var incrementals = $$('.incremental');
+    if (this.step <= 0) {
+      $$.forEach(incrementals, function(aNode) {
+        aNode.removeAttribute('active');
+      });
+      return;
+    }
+    var next = this.slides[this.idx - 1].$$('.incremental > *')[this.step - 1];
+    if (next) {
+      next.setAttribute('aria-selected', true);
+      next.parentNode.setAttribute('active', true);
+      var found = false;
+      $$.forEach(incrementals, function(aNode) {
+        if (aNode != next.parentNode)
+          if (found)
+            aNode.removeAttribute('active');
+          else
+            aNode.setAttribute('active', true);
+        else
+          found = true;
+      });
+    } else {
+      setCursor(this.idx, 0);
+    }
+    return next;
+  }
+
+  Dz.goFullscreen = function() {
+    var html = $('html'),
+        requestFullscreen = html.requestFullscreen || html.requestFullScreen || html.mozRequestFullScreen || html.webkitRequestFullScreen;
+    if (requestFullscreen) {
+      requestFullscreen.apply(html);
+    }
+  }
+
+  Dz.setProgress = function(aIdx, aStep) {
+    var slide = $("section:nth-of-type("+ aIdx +")");
+    if (!slide)
+      return;
+    var steps = slide.$$('.incremental > *').length + 1,
+        slideSize = 100 / (this.slides.length - 1),
+        stepSize = slideSize / steps;
+    this.progressBar.style.width = ((aIdx - 1) * slideSize + aStep * stepSize) + '%';
+  }
+
+  Dz.postMsg = function(aWin, aMsg) { // [arg0, [arg1...]]
+    aMsg = [aMsg];
+    for (var i = 2; i < arguments.length; i++)
+      aMsg.push(encodeURIComponent(arguments[i]));
+    aWin.postMessage(aMsg.join(" "), "*");
+  }
+
+  function init() {
+    Dz.init();
+    window.onkeydown = Dz.onkeydown.bind(Dz);
+    window.onresize = Dz.onresize.bind(Dz);
+    window.onhashchange = Dz.onhashchange.bind(Dz);
+    window.onmessage = Dz.onmessage.bind(Dz);
+  }
+
+  window.onload = init;
+</script>
+
+
+<script> // Helpers
+  if (!Function.prototype.bind) {
+    Function.prototype.bind = function (oThis) {
+
+      // closest thing possible to the ECMAScript 5 internal IsCallable
+      // function
+      if (typeof this !== "function")
+      throw new TypeError(
+        "Function.prototype.bind - what is trying to be fBound is not callable"
+      );
+
+      var aArgs = Array.prototype.slice.call(arguments, 1),
+          fToBind = this,
+          fNOP = function () {},
+          fBound = function () {
+            return fToBind.apply( this instanceof fNOP ? this : oThis || window,
+                   aArgs.concat(Array.prototype.slice.call(arguments)));
+          };
+
+      fNOP.prototype = this.prototype;
+      fBound.prototype = new fNOP();
+
+      return fBound;
+    };
+  }
+
+  var $ = (HTMLElement.prototype.$ = function(aQuery) {
+    return this.querySelector(aQuery);
+  }).bind(document);
+
+  var $$ = (HTMLElement.prototype.$$ = function(aQuery) {
+    return this.querySelectorAll(aQuery);
+  }).bind(document);
+
+  $$.forEach = function(nodeList, fun) {
+    Array.prototype.forEach.call(nodeList, fun);
+  }
+
+</script>
+<!-- vim: set fdm=marker: }}} -->
