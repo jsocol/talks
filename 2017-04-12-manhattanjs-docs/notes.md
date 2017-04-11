@@ -27,8 +27,9 @@
 6. The actual publishing
   1. What good systems need
   2. Internal references
-  3. IA
-  4. Search
+  3. Versioning
+  4. IA
+  5. Search
 7. The actual writing
   1. Text lacks empathy ("just" "simply" "easy")
   2. Tacit assumptions
