@@ -11,7 +11,9 @@
 </section>
 
 <section class="title">
-  <h1>Great Documentation</h1>
+  <div class="title-wrapper">
+    <h1>Great Documentation</h1>
+  </div>
   <footer style="font-size: 50%">
     James Socol<br>
     ManhattanJS<br>
@@ -306,6 +308,50 @@
   <h1>Structure of Great Docs</h1>
 </section>
 
+<section>
+  <h3>Strip Mind of Bad Docs</h3>
+  <details>
+    No docs is bad.
+    <em>Wrong</em> docs is way worse.
+  </details>
+</section>
+
+<section>
+  <h3>Pyramid of Great Docs</h3>
+  <details>
+  </details>
+</section>
+
+<section>
+  <h3>API References</h3>
+  <details>
+  </details>
+</section>
+
+<section>
+  <h3>Terse Usage Guides</h3>
+  <details>
+  </details>
+</section>
+
+<section>
+  <h3>How Tos</h3>
+  <details>
+  </details>
+</section>
+
+<section>
+  <h3>Topic Guides</h3>
+  <details>
+  </details>
+</section>
+
+<section>
+  <h3>Tutorials</h3>
+  <details>
+  </details>
+</section>
+
 <section class="title">
   <h1>Publishing Great Docs</h1>
 </section>
@@ -352,6 +398,16 @@
       font-size: 30px;
   }
 
+  div.title-wrapper {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+  }
+  section.title div.title-wrapper {
+      height: 480px;
+  }
+
   .view section:after {
     counter-increment: slideidx;
     content: counter(slideidx, decimal-leading-zero);
@@ -368,13 +424,17 @@
   h1, h2 {
     font-family: 'MuseoSans900', Arial, sans-serif;
     font-size: 80px;
-    margin-top: 200px;
     text-align: center;
+    margin-top: 180px;
   }
   h3 {
     font-family: 'MuseoSans900', Arial, sans-serif;
     font-size: 48px;
     margin: 60px 0 30px 100px;
+  }
+
+  .title-wrapper h1, .title-wrapper h2 {
+    margin-top: initial;
   }
 
   ol, ul {
