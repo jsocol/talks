@@ -471,36 +471,88 @@
 <section class="title">
   <h2>Publishing Great Docs</h2>
   <details>
+    We put everything in on README file.
+    Not great.
+    Tools (Sphinx, RTD) exist in other languages.
+    Markdown not super good at this either.
   </details>
 </section>
 
 <section>
   <h3>What a Tool Needs</h3>
+  <ul class="incremental">
+    <li>Internal references</li>
+    <li>Structure</li>
+    <li>Versioning</li>
+    <li>Search</li>
+  </ul>
   <details>
+    Refs: system, keep links working even if you restructure.
+    Struct: evolve as necessary, not linear, not chrono.
+    Version: w/code, in URLs.
   </details>
 </section>
 
 <section>
-  <h3>Internal References</h3>
+  <figure>
+    <img src="images/web.jpg" data-src="http://www.marshsoftware.com/wp-content/uploads/2016/05/worldwideweb.jpg">
+  </figure>
+  <details>
+    Lots of internal references.
+    MD doesn't do this for you, but others do.
+  </details>
+</section>
+
+<section>
+  <pre>
+.. _chapter-types:
+
+=====
+Types
+=====
+  </pre>
+  <details>
+    Sphinxdoc/RST target locations.
+  </details>
+</section>
+
+<section>
+  <pre>
+:ref:`all types &lt;chapter-types&gt;`_
+  </pre>
+  <details>
+    Reference to target.
+  </details>
+</section>
+
+<section>
+  <h3>Content Structure</h3>
+  <ul class="incremental">
+    <li>Probably not linear</li>
+    <li>Interconnected</li>
+    <li>Not chronological</li>
+    <li>(Except changelogs/release notes)</li>
+  </ul>
   <details>
   </details>
 </section>
 
 <section>
   <h3>Versioning</h3>
+  <ul class="incremental">
+    <li>Living with code is ideal: docs at any commit</li>
+    <li>Published with consistent URLs</li>
+    <li>Tagged/released versions</li>
+  </ul>
   <details>
-  </details>
-</section>
-
-<section>
-  <h3>Content Structure</h3>
-  <details>
+    ReadTheDocs does all this.
   </details>
 </section>
 
 <section>
   <h3>Search</h3>
   <details>
+    Given splitting across files, browser search doesn't cut it anymore.
   </details>
 </section>
 
@@ -510,6 +562,27 @@
 
 <section>
   <h2>Text 👏 Lacks 👏 Empathy 👏</h2>
+  <details>
+    Main point of section. Be overly empathetic.
+  </details>
+</section>
+
+<section>
+  <h2>Make Assumptions Explicit</h2>
+  <details>
+    Client for a server: link to server docs.
+    Parsers: link to wikipedia maybe?
+  </details>
+</section>
+
+<section>
+  <h3>Assumptions</h3>
+  <ul class="incremental">
+    <li>Context.</li>
+    <li>Skill.</li>
+    <li>Language.</li>
+    <li>Etc...</li>
+  </ul>
   <details>
   </details>
 </section>
@@ -523,28 +596,26 @@
   </ul>
   <details>
     Hype-mode writing is one thing.
+    Easy for you, not necessarily users.
   </details>
 </section>
 
 <section>
-  <h2>Make Assumptions Explicit</h2>
+  <h2>Precision and Consistency</h2>
   <details>
-  </details>
-</section>
-
-<section>
-  <h3>Assumptions</h3>
-  <details>
-    Context.
-    Skill.
-    Language.
-  </details>
-</section>
-
-<section>
-  <h3>Precision and Consistency</h3>
-  <details>
+    Use terms consistently.
     Put away the thesaurus.
+  </details>
+</section>
+
+<section>
+  <h3>Resources</h3>
+  <ul>
+    <li><a href="https://readthedocs.org">ReadTheDocs</a></li>
+    <li><a href="https://writethedocs.org">WriteTheDocs</a></li>
+  </ul>
+  <details>
+    These ^. Other links (Jacobian and Holscher blogs) in this talk.
   </details>
 </section>
 
