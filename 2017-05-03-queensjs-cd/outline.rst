@@ -1,0 +1,49 @@
+"Going Faster" Outline
+======================
+
+- Who am I?
+- Where are we going?
+- What do *I* mean?
+  - Changes go to production immediately
+  - Person pushes the button
+- Why this?
+  - Goals
+    - New features/bugfixes faster
+    - More ownership & accountability
+    - Simplify e.g. Jira process (“done” === “in master”, triggerable)
+    - Simplify git process
+    - Reduce size/risk of deploys
+    - Quickly identify causes of regressions
+    - Master is always deployable; "other deploys" never blocked
+    - Automate what’s possible, but humans push “go to prod” button
+  - "CD is EVERYTHING"
+    - Developer happiness
+    - Developer autonomy
+    - Speed
+- The common path
+  - Features
+    - Bad because of size, assumption of perfection/QAability, rarity
+  - Time-based
+    - Bad because of lag time, assumption of perfection/QAability
+    - Better because lots of releases, implement tools/power
+  - Continuous
+    - Good!
+    - Some risks though
+- Triforce
+  - Mitigates those risks
+  - Power
+  - Wisdom
+  - Courage
+- Power:
+  - Repeatable processes -> scripted
+  - Any dead-simple interface, e.g. big-red-button, Fabric
+  - Feature flags
+- Wisdom:
+  - Real-time business-level information: StatsD, NewRelic, Sentry
+  - Bug reports from staff, community
+- Courage:
+  - Automated tests
+  - Repeatable processes
+  - Confidence is hard to measure
+  - Blameless post-mortems
+- Zero-downtime

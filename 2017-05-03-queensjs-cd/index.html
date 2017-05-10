@@ -1,0 +1,1097 @@
+<!DOCTYPE html>
+
+<meta charset="utf-8">
+<title>Going Faster: Dozens of Deployments a Day</title>
+
+<!-- Your Slides -->
+<!-- One section is one slide -->
+
+<section class="title">
+  <h1>TURN OFF FLUX</h1>
+</section>
+
+<section class="title">
+  <div class="title-wrapper">
+    <h1>Zelda and the Art of Continuous Delivery</h1>
+  </div>
+  <footer style="font-size: 50%">James Socol<br>
+  QueensJS<br>
+  3 May 2017</footer>
+</section>
+
+<section>
+  <h2>Hi</h2>
+  <details>
+    I'm James, Dir Eng at Cond&eacute; Nast.
+    Been talking about CD for ~7 years. Firstmark talk in 2013. Worked at Mozilla, Bitly, self, other places, Cond&eacute;.
+    8 apps CD in last 1 month.
+  </details>
+</section>
+
+<section>
+  <h2>"Continuous Deployment"?</h2>
+  <details>
+    Talking about CD.
+  </details>
+</section>
+
+<section>
+  <h2>"Continuous <em>Delivery</em>"?</h2>
+  <details>
+    Or maybe CD.
+  </details>
+</section>
+
+<section>
+  <h3>Where we're going</h3>
+  <ol class="incremental">
+    <li>What am I talking about?</li>
+    <li>Why bother?</li>
+    <li>The common path</li>
+    <li>The Triforce</li>
+  </ol>
+  <details>
+    CD vs CD.
+    Goals/benefits.
+    The background/my story.
+    The usual route I've taken to this.
+    The Triforce model: are we ready?
+  </details>
+</section>
+
+<section>
+  <h2>What am I talking about?</h2>
+  <details>
+    "CDeployment" often means fully automated.
+    I mean you deploy every change.
+    Individually, each small/atomic change.
+  </details>
+</section>
+
+<section>
+  <figure>
+    <img src="images/button.gif" data-src="https://media.giphy.com/media/RX4tmGEHUrkyI/giphy.gif">
+  </figure>
+  <details>
+    But a human hits the button.
+    Why? Ownership/accountability/sign-off.
+  </details>
+</section>
+
+<section>
+  <figure>
+    <img src="images/y-tho.jpg" data-src="http://i.imgur.com/yNlQWRM.jpg">
+  </figure>
+  <details>
+    Why in the first place?
+  </details>
+</section>
+
+<section>
+  <h2>Benefits of CD</h2>
+  <details>
+    What are the benefits?
+    From a team doc...
+  </details>
+</section>
+
+<section>
+  <h3>Benefits of CD</h3>
+  <ul class="incremental">
+    <li>More ownership</li>
+    <li>Simpler git process</li>
+    <li>Simpler Jira/workflow</li>
+    <li>Reduce risk per deploy</li>
+  </ul>
+  <details>
+    Never "over the wall". Just merge. Automate jira. One change per deploy, safer.
+  </details>
+</section>
+
+<section>
+  <h3>Benefits of CD (cont)</h3>
+  <ul class="incremental">
+    <li>Quickly identify causes</li>
+    <li>Always have safe base for deploys</li>
+    <li>Automate lots</li>
+    <li>Fixes/features out faster</li>
+  </ul>
+  <details>
+    Also easier to attribute.
+    Don't block other deployers.
+    Can automate a lot, but I like humans to push the button.
+    45–55 days/week of value..
+  </details>
+</section>
+
+<section>
+  <figure>
+    <img src="images/its-high.gif" data-src="https://az616578.vo.msecnd.net/files/2016/12/23/636181176388669623342193106_tumblr_oin5qfA3uf1s3olk1o6_400.gif">
+  </figure>
+  <details>
+    Anyway it's high. It's very high.
+  </details>
+</section>
+
+<section>
+  <figure>
+    <img src="images/goals.gif" data-src="https://media.giphy.com/media/l41lPe02EuUXQ90GY/giphy.gif">
+  </figure>
+  <details>
+    These are all good goals in and of themselves.
+    Even without CD, good to aim for.
+  </details>
+</section>
+
+<section>
+  <figure>
+    <img src="images/no-idea.jpg" data-src="http://i0.kym-cdn.com/photos/images/original/000/234/739/fa5.jpg">
+  </figure>
+  <details>
+    Results. (Scientist dog.)
+  </details>
+</section>
+
+<section>
+  <blockquote>CD is EVERYTHING</blockquote>
+  <details>
+    Developer happiness, autonomy, speed.
+  </details>
+</section>
+
+<section>
+  <figure>
+    <img src="images/path.gif" data-src="https://i.stack.imgur.com/lOX1C.gif">
+  </figure>
+  <details>
+    What's the path?
+    Most places I've worked, or talked about it, same pattern.
+  </details>
+</section>
+
+<section>
+  <h2>Feature-based</h2>
+  <details>
+    Sucks.
+    Assume perfection.
+    "Done" criteria hard.
+    Months between releases.
+    Big and risky, hours of peoples time.
+    Bug fixes stuck behind feature work.
+    Complicated branching, hotfixes.
+  </details>
+</section>
+
+<section>
+  <h2>Time-based</h2>
+  <details>
+    "Train schedule", e.g. weekly.
+    Two stations: cut to stage, stabilize, go to prod.
+    Bugfixes not stuck on features.
+    Consistent branching: same every week, only bugfixes and backouts on stage.
+    Frequent deploys become repeatable processes: scriptable.
+  </details>
+</section>
+
+<section>
+  <h2>Continuous</h2>
+  <details>
+    No assumption of perfection.
+    Deploys happen whenever there's something to go out.
+    Fast feedback. Feature flags to test with real users.
+    Push-button: execute scripts.
+    No branching, always land on master. Never break master.
+    No "hotfixes." All bug fixes go out as soon as they're done.
+  </details>
+</section>
+
+<section>
+  <h2>Risks</h2>
+  <details>
+    Errors make it to prod.
+    Quality goes down.
+    Can't do splashy launches.
+    How to mitigate......
+  </details>
+</section>
+
+<section>
+  <figure>
+    <img src="images/triforce.png">
+  </figure>
+  <details>
+    The Triforce of Deployment.
+  </details>
+</section>
+
+<section>
+  <h3>Triforce of Deployment</h3>
+  <ul class="incremental">
+    <li>Power</li>
+    <li>Wisdom</li>
+    <li>Courage</li>
+  </ul>
+  <details>
+    Wisdom: insight into the system, feedback loops.
+    Courage: confidence from tests, repetition, practices.
+    Power: Tools to deploy, tools to code (feature flags).
+  </details>
+</section>
+
+<section>
+  <h2>Power</h2>
+  <details>Tools. Tools. Tools.</details>
+</section>
+
+<section>
+  <h2>Scripts</h2>
+  <details>Deploy enough that it's a script.
+  Turn it into a real script.
+  Execute that script.
+  Execute it all the time.</details>
+</section>
+
+<section>
+  <figure>
+    <img src="images/bigred.png">
+  </figure>
+  <details>Dead-simple interface to deploy.
+  Button causes web app to execute the deploy script.
+  Fabric: Simple command-line: "fab deploy".</details>
+</section>
+
+<section>
+  <h2>Feature Flags</h2>
+  <details>Activate features at run-time.
+  Do internal, 1%-10% rollouts.
+  Collect feedback (human and machine) from real use.</details>
+</section>
+
+<section>
+  <pre><code>{% if flag(request, 'foo') %}
+  &lt;a href="/new/feature"&gt;
+    Feature!&lt;/a&gt;
+{% endif %}</code></pre>
+  <details>A very simple realistic example: if the flag is on, show a
+  link to a new feature. If not, no link.</details>
+</section>
+
+<section>
+  <h2>Wisdom</h2>
+  <details>
+    Knowing what's going on. Do things work? Has anything changed?
+  </details>
+</section>
+
+<section>
+  <figure>
+    <img src="images/graphite.png">
+  </figure>
+  <details>
+    StatsD/Graphite, NewRelic.
+    Real-time business metrics.
+    Not just load/IO/etc, but interesting events, timing data.
+    Watch during deploys. Do graphs change? Are they supposed to?
+  </details>
+</section>
+
+<section>
+  <figure>
+    <img src="images/sentry.png">
+  </figure>
+  <details>
+    Error tracking and alerting.
+    Need to know ASAP.
+    Trends are very helpful.
+    Stack traces, local variables: everything you can capture helps.
+  </details>
+</section>
+
+<section>
+  <figure>
+    <img src="images/bugzilla.png">
+  </figure>
+  <details>
+    Everyone in your org can report bugs?
+    Have channels for community/users to report issues? Forums, Twitter.
+    People actively watching incoming issues.
+  </details>
+</section>
+
+<section>
+  <figure>
+    <img src="images/loop.gif" data-src="https://cdn.dribbble.com/users/196525/screenshots/1216701/companioncube2.gif">
+  </figure>
+  <details>
+    Feedback loops.
+  </details>
+</section>
+
+<section>
+  <h2>Courage</h2>
+  <details>Confidence from tests, repetition, processes.</details>
+</section>
+
+<section>
+  <figure>
+    <img src="images/jenkins.png">
+  </figure>
+  <details>Tests.
+  Automated, reliable. Flakey tests waste time, fix or disable.
+  Limit integration tests to critical workflows. Right (fastest) tool.
+  Investment, but pays off quickly.</details>
+</section>
+
+<section>
+  <figure>
+    <img src="images/review.png">
+  </figure>
+  <details>Code review (or pairing).
+  Pre-commit review, many obvious issues easy.
+  "Enough eyes, all bugs are shallow."
+  Pre-merge testing.
+  Also: Bus numbers.</details>
+</section>
+
+<section>
+  <h2>Repetition</h2>
+  <details>Deploying over and over.
+  Do it blindfolded.
+  Know the process inside and out.</details>
+</section>
+
+<section>
+  <h2>Blameless<br>Post-mortems</h2>
+  <details>Focus on fixing issue and process.
+  People already know they screwed up.
+  Team problem: team solution.
+  If issues, discuss privately.</details>
+</section>
+
+<section>
+  <h2>No Code is Perfect</h2>
+  <details>We pretend it is.
+  There will always be bugs.
+  CD lets us fix them quickly and easily.
+  Feature flags help us find them in small samples.
+  Model better fits reality.</details>
+</section>
+
+<section>
+  <h2>Our Process</h2>
+  <details>
+    A bit about our process at Cond&eacute;
+  </details>
+</section>
+
+<section>
+  <figure>
+    <img src="images/our-process.png">
+  </figure>
+</section>
+
+<section class="title">
+  <h2 style="font-size: 70px; color: #909099;">me<span style="color: #000">@jamessocol</span>.com</h2>
+  <footer style="font-size: 50%">James Socol<br>
+  QueensJS<br>
+  3 May 2017</footer>
+</section>
+
+<!-- Your Style -->
+<!-- Define the style of your presentation -->
+
+<style>
+  @font-face {
+      font-family: 'MuseoSans900';
+      src: url('font/MuseoSans_900-webfont.woff') format('woff');
+      font-weight: 900;
+      font-style: normal;
+  }
+  @font-face {
+      font-family: 'CallunaRegular';
+      src: url('font/Calluna-Regular-webfont.woff') format('woff');
+      font-weight: normal;
+      font-style: normal;
+  }
+  html, .view body { background-color: black; counter-reset: slideidx; }
+  body, .view section { background-color: white; border-radius: 12px }
+  /* A section is a slide. It's size is 800x600, and this will never change */
+  section, .view head > title {
+      /* The font from Google */
+      font-family: 'CallunaRegular', arial, serif;
+      font-size: 30px;
+  }
+
+  div.title-wrapper {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+  }
+  section.title div.title-wrapper {
+      height: 480px;
+  }
+
+  .view section:after {
+    counter-increment: slideidx;
+    content: counter(slideidx, decimal-leading-zero);
+    position: absolute; bottom: -80px; right: 100px;
+    color: white;
+  }
+
+  .view head > title {
+    color: white;
+    text-align: center;
+    margin: 1em 0 1em 0;
+  }
+
+  h1, h2 {
+    margin-top: 200px;
+    text-align: center;
+    font-size: 80px;
+    font-family: 'MuseoSans900', Arial, sans-serif;
+  }
+  h3 {
+    margin: 100px 0 50px 100px;
+    font-family: 'MuseoSans900', Arial, sans-serif;
+  }
+
+  .title-wrapper h1, .title-wrapper h2 {
+    margin-top: initial;
+  }
+
+  ol, ul {
+      font-size: 130%;
+      margin: 50px 200px;
+  }
+
+  p {
+    margin: 75px;
+    font-size: 50px;
+  }
+
+  blockquote {
+    background-color: black;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    font-size: 60px;
+    height: 100%;
+    justify-content: center;
+    padding: 50px;
+    text-align: center;
+  }
+  blockquote:before {
+    content: open-quote;
+  }
+  blockquote:after {
+    content: close-quote;
+  }
+  pre {
+    height: 100%;
+    width: 100%;
+    background-color: white;
+    color: black;
+    font-size: 40px;
+    padding: 20px;
+  }
+
+
+  /* Figures are displayed full-page, with the caption
+     on top of the image/video */
+  figure {
+    background-color: white;
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+  figure > * {
+    position: absolute;
+  }
+  figure > img, figure > video {
+    width: 100%; height: 100%;
+    object-fit: contain;
+  }
+  figcaption {
+    margin: 70px;
+    font-size: 50px;
+  }
+
+  footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 40px;
+    text-align: right;
+    background-color: #F3F4F8;
+    border-top: 1px solid #CCC;
+  }
+
+  /* Transition effect */
+  /* Feel free to change the transition effect for original
+     animations. See here:
+     https://developer.mozilla.org/en/CSS/CSS_transitions
+     How to use CSS3 Transitions: */
+  section {
+    -moz-transition: left 400ms linear 0s;
+    -webkit-transition: left 400ms linear 0s;
+    -ms-transition: left 400ms linear 0s;
+    transition: left 400ms linear 0s;
+  }
+  .view section {
+    -moz-transition: none;
+    -webkit-transition: none;
+    -ms-transition: none;
+    transition: none;
+  }
+
+  .view section[aria-selected] {
+    border: 5px red solid;
+  }
+
+  /* Before */
+  section { left: -150%; }
+  /* Now */
+  section[aria-selected] { left: 0; }
+  /* After */
+  section[aria-selected] ~ section { left: +150%; }
+
+  /* Incremental elements */
+
+  /* By default, visible */
+  .incremental > * { opacity: 1; }
+
+  /* The current item */
+  .incremental > *[aria-selected] { opacity: 1; }
+
+  /* The items to-be-selected */
+  .incremental > *[aria-selected] ~ * { opacity: 0; }
+
+  /* The progressbar, at the bottom of the slides, show the global
+     progress of the presentation. */
+  #progress-bar {
+    height: 2px;
+    background: #AAA;
+  }
+
+  .title footer {
+    background-image: url(images/js-magenta-200.png);
+    background-position: bottom left;
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+  figure > img.center {
+    width: auto;
+    left: 25%;
+  }
+  figure > img.vscale {
+    height: auto;
+  }
+  @media print {
+  }
+</style>
+<style media="print">
+@page {
+  margin: 0;
+  size: 8in 6in;
+}
+html body {
+	height: auto;
+	position: relative;
+	width: 100%;
+}
+html body section {
+  display: block !important;
+  float: none;
+  height: 100%;
+  left: 0 !important;
+  margin: 0;
+  page: auto;
+  page-break-after: always;
+  position: relative;
+  width: 100%;
+}
+section[aria-selected] ~ section {
+  left: 0;
+}
+.incremental * {
+  display: auto;
+}
+</style>
+
+<!-- {{{{ dzslides core
+#
+#
+#     __  __  __       .  __   ___  __
+#    |  \  / /__` |    | |  \ |__  /__`
+#    |__/ /_ .__/ |___ | |__/ |___ .__/ core :€
+#
+#
+# The following block of code is not supposed to be edited.
+# But if you want to change the behavior of these slides,
+# feel free to hack it!
+#
+-->
+
+<div id="progress-bar"></div>
+
+<!-- Default Style -->
+<style>
+  * { margin: 0; padding: 0; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
+  details { display: none; }
+  body {
+    width: 800px; height: 600px;
+    margin-left: -400px; margin-top: -300px;
+    position: absolute; top: 50%; left: 50%;
+    overflow: hidden;
+    display: none;
+  }
+  .view body {
+    position: static;
+    margin: 0; padding: 0;
+    width: 100%; height: 100%;
+    display: inline-block;
+    overflow: visible; overflow-x: hidden;
+    /* undo Dz.onresize */
+    transform: none !important;
+    -moz-transform: none !important;
+    -webkit-transform: none !important;
+    -o-transform: none !important;
+    -ms-transform: none !important;
+  }
+  .view head, .view head > title { display: block }
+  section {
+    position: absolute;
+    pointer-events: none;
+    width: 100%; height: 100%;
+  }
+  .view section {
+    pointer-events: auto;
+    position: static;
+    width: 800px; height: 600px;
+    margin: -150px -200px;
+    float: left;
+
+    transform: scale(.4);
+    -moz-transform: scale(.4);
+    -webkit-transform: scale(.4);
+    -o-transform: scale(.4);
+    -ms-transform: scale(.4);
+  }
+  .view section > * { pointer-events: none; }
+  section[aria-selected] { pointer-events: auto; }
+  html { overflow: hidden; }
+  html.view { overflow: visible; }
+  body.loaded { display: block; }
+  .incremental {visibility: hidden; }
+  .incremental[active] {visibility: visible; }
+  #progress-bar{
+    bottom: 0;
+    position: absolute;
+    -moz-transition: width 400ms linear 0s;
+    -webkit-transition: width 400ms linear 0s;
+    -ms-transition: width 400ms linear 0s;
+    transition: width 400ms linear 0s;
+  }
+  .view #progress-bar {
+    display: none;
+  }
+</style>
+
+<script>
+  var Dz = {
+    remoteWindows: [],
+    idx: -1,
+    step: 0,
+    html: null,
+    slides: null,
+    progressBar : null,
+    params: {
+      autoplay: "1"
+    }
+  };
+
+  Dz.init = function() {
+    document.body.className = "loaded";
+    this.slides = Array.prototype.slice.call($$("body > section"));
+    this.progressBar = $("#progress-bar");
+    this.html = document.body.parentNode;
+    this.setupParams();
+    this.onhashchange();
+    this.setupTouchEvents();
+    this.onresize();
+    this.setupView();
+  }
+
+  Dz.setupParams = function() {
+    var p = window.location.search.substr(1).split('&');
+    p.forEach(function(e, i, a) {
+      var keyVal = e.split('=');
+      Dz.params[keyVal[0]] = decodeURIComponent(keyVal[1]);
+    });
+  // Specific params handling
+    if (!+this.params.autoplay)
+      $$.forEach($$("video"), function(v){ v.controls = true });
+  }
+
+  Dz.onkeydown = function(aEvent) {
+    // Don't intercept keyboard shortcuts
+    if (aEvent.altKey
+      || aEvent.ctrlKey
+      || aEvent.metaKey
+      || aEvent.shiftKey) {
+      return;
+    }
+    if ( aEvent.keyCode == 37 // left arrow
+      || aEvent.keyCode == 38 // up arrow
+      || aEvent.keyCode == 33 // page up
+    ) {
+      aEvent.preventDefault();
+      this.back();
+    }
+    if ( aEvent.keyCode == 39 // right arrow
+      || aEvent.keyCode == 40 // down arrow
+      || aEvent.keyCode == 34 // page down
+    ) {
+      aEvent.preventDefault();
+      this.forward();
+    }
+    if (aEvent.keyCode == 35) { // end
+      aEvent.preventDefault();
+      this.goEnd();
+    }
+    if (aEvent.keyCode == 36) { // home
+      aEvent.preventDefault();
+      this.goStart();
+    }
+    if (aEvent.keyCode == 32) { // space
+      aEvent.preventDefault();
+      this.toggleContent();
+    }
+    if (aEvent.keyCode == 70) { // f
+      aEvent.preventDefault();
+      this.goFullscreen();
+    }
+    if (aEvent.keyCode == 79) { // o
+      aEvent.preventDefault();
+      this.toggleView();
+    }
+  }
+
+  /* Touch Events */
+
+  Dz.setupTouchEvents = function() {
+    var orgX, newX;
+    var tracking = false;
+
+    var db = document.body;
+    db.addEventListener("touchstart", start.bind(this), false);
+    db.addEventListener("touchmove", move.bind(this), false);
+
+    function start(aEvent) {
+      aEvent.preventDefault();
+      tracking = true;
+      orgX = aEvent.changedTouches[0].pageX;
+    }
+
+    function move(aEvent) {
+      if (!tracking) return;
+      newX = aEvent.changedTouches[0].pageX;
+      if (orgX - newX > 100) {
+        tracking = false;
+        this.forward();
+      } else {
+        if (orgX - newX < -100) {
+          tracking = false;
+          this.back();
+        }
+      }
+    }
+  }
+
+  Dz.setupView = function() {
+    document.body.addEventListener("click", function ( e ) {
+      if (!Dz.html.classList.contains("view")) return;
+      if (!e.target || e.target.nodeName != "SECTION") return;
+
+      Dz.html.classList.remove("view");
+      Dz.setCursor(Dz.slides.indexOf(e.target) + 1);
+    }, false);
+  }
+
+  /* Adapt the size of the slides to the window */
+
+  Dz.onresize = function() {
+    var db = document.body;
+    var sx = db.clientWidth / window.innerWidth;
+    var sy = db.clientHeight / window.innerHeight;
+    var transform = "scale(" + (1/Math.max(sx, sy)) + ")";
+
+    db.style.MozTransform = transform;
+    db.style.WebkitTransform = transform;
+    db.style.OTransform = transform;
+    db.style.msTransform = transform;
+    db.style.transform = transform;
+  }
+
+
+  Dz.getDetails = function(aIdx) {
+    var s = $("section:nth-of-type(" + aIdx + ")");
+    var d = s.$("details");
+    return d ? d.innerHTML : "";
+  }
+
+  Dz.onmessage = function(aEvent) {
+    var argv = aEvent.data.split(" "), argc = argv.length;
+    argv.forEach(function(e, i, a) { a[i] = decodeURIComponent(e) });
+    var win = aEvent.source;
+    if (argv[0] === "REGISTER" && argc === 1) {
+      this.remoteWindows.push(win);
+      this.postMsg(win, "REGISTERED", document.title, this.slides.length);
+      this.postMsg(win, "CURSOR", this.idx + "." + this.step);
+      return;
+    }
+    if (argv[0] === "BACK" && argc === 1)
+      this.back();
+    if (argv[0] === "FORWARD" && argc === 1)
+      this.forward();
+    if (argv[0] === "START" && argc === 1)
+      this.goStart();
+    if (argv[0] === "END" && argc === 1)
+      this.goEnd();
+    if (argv[0] === "TOGGLE_CONTENT" && argc === 1)
+      this.toggleContent();
+    if (argv[0] === "SET_CURSOR" && argc === 2)
+      window.location.hash = "#" + argv[1];
+    if (argv[0] === "GET_CURSOR" && argc === 1)
+      this.postMsg(win, "CURSOR", this.idx + "." + this.step);
+    if (argv[0] === "GET_NOTES" && argc === 1)
+      this.postMsg(win, "NOTES", this.getDetails(this.idx));
+  }
+
+  Dz.toggleContent = function() {
+    // If a Video is present in this new slide, play it.
+    // If a Video is present in the previous slide, stop it.
+    var s = $("section[aria-selected]");
+    if (s) {
+      var video = s.$("video");
+      if (video) {
+        if (video.ended || video.paused) {
+          video.play();
+        } else {
+          video.pause();
+        }
+      }
+    }
+  }
+
+  Dz.setCursor = function(aIdx, aStep) {
+    // If the user change the slide number in the URL bar, jump
+    // to this slide.
+    aStep = (aStep != 0 && typeof aStep !== "undefined") ? "." + aStep : ".0";
+    window.location.hash = "#" + aIdx + aStep;
+  }
+
+  Dz.onhashchange = function() {
+    var cursor = window.location.hash.split("#"),
+        newidx = 1,
+        newstep = 0;
+    if (cursor.length == 2) {
+      newidx = ~~cursor[1].split(".")[0];
+      newstep = ~~cursor[1].split(".")[1];
+      if (newstep > Dz.slides[newidx - 1].$$('.incremental > *').length) {
+        newstep = 0;
+        newidx++;
+      }
+    }
+    this.setProgress(newidx, newstep);
+    if (newidx != this.idx) {
+      this.setSlide(newidx);
+    }
+    if (newstep != this.step) {
+      this.setIncremental(newstep);
+    }
+    for (var i = 0; i < this.remoteWindows.length; i++) {
+      this.postMsg(this.remoteWindows[i], "CURSOR", this.idx + "." + this.step);
+    }
+  }
+
+  Dz.back = function() {
+    if (this.idx == 1 && this.step == 0) {
+      return;
+    }
+    if (this.step == 0) {
+      this.setCursor(this.idx - 1,
+                     this.slides[this.idx - 2].$$('.incremental > *').length);
+    } else {
+      this.setCursor(this.idx, this.step - 1);
+    }
+  }
+
+  Dz.forward = function() {
+    if (this.idx >= this.slides.length &&
+        this.step >= this.slides[this.idx - 1].$$('.incremental > *').length) {
+        return;
+    }
+    if (this.step >= this.slides[this.idx - 1].$$('.incremental > *').length) {
+      this.setCursor(this.idx + 1, 0);
+    } else {
+      this.setCursor(this.idx, this.step + 1);
+    }
+  }
+
+  Dz.goStart = function() {
+    this.setCursor(1, 0);
+  }
+
+  Dz.goEnd = function() {
+    var lastIdx = this.slides.length;
+    var lastStep = this.slides[lastIdx - 1].$$('.incremental > *').length;
+    this.setCursor(lastIdx, lastStep);
+  }
+
+  Dz.toggleView = function() {
+    this.html.classList.toggle("view");
+
+    if (this.html.classList.contains("view")) {
+      $("section[aria-selected]").scrollIntoView(true);
+    }
+  }
+
+  Dz.setSlide = function(aIdx) {
+    this.idx = aIdx;
+    var old = $("section[aria-selected]");
+    var next = $("section:nth-of-type("+ this.idx +")");
+    if (old) {
+      old.removeAttribute("aria-selected");
+      var video = old.$("video");
+      if (video) {
+        video.pause();
+      }
+    }
+    if (next) {
+      next.setAttribute("aria-selected", "true");
+      if (this.html.classList.contains("view")) {
+        next.scrollIntoView();
+      }
+      var video = next.$("video");
+      if (video && !!+this.params.autoplay) {
+        video.play();
+      }
+    } else {
+      // That should not happen
+      this.idx = -1;
+      // console.warn("Slide doesn't exist.");
+    }
+  }
+
+  Dz.setIncremental = function(aStep) {
+    this.step = aStep;
+    var old = this.slides[this.idx - 1].$('.incremental > *[aria-selected]');
+    if (old) {
+      old.removeAttribute('aria-selected');
+    }
+    var incrementals = $$('.incremental');
+    if (this.step <= 0) {
+      $$.forEach(incrementals, function(aNode) {
+        aNode.removeAttribute('active');
+      });
+      return;
+    }
+    var next = this.slides[this.idx - 1].$$('.incremental > *')[this.step - 1];
+    if (next) {
+      next.setAttribute('aria-selected', true);
+      next.parentNode.setAttribute('active', true);
+      var found = false;
+      $$.forEach(incrementals, function(aNode) {
+        if (aNode != next.parentNode)
+          if (found)
+            aNode.removeAttribute('active');
+          else
+            aNode.setAttribute('active', true);
+        else
+          found = true;
+      });
+    } else {
+      setCursor(this.idx, 0);
+    }
+    return next;
+  }
+
+  Dz.goFullscreen = function() {
+    var html = $('html'),
+        requestFullscreen = html.requestFullscreen || html.requestFullScreen || html.mozRequestFullScreen || html.webkitRequestFullScreen;
+    if (requestFullscreen) {
+      requestFullscreen.apply(html);
+    }
+  }
+
+  Dz.setProgress = function(aIdx, aStep) {
+    var slide = $("section:nth-of-type("+ aIdx +")");
+    if (!slide)
+      return;
+    var steps = slide.$$('.incremental > *').length + 1,
+        slideSize = 100 / (this.slides.length - 1),
+        stepSize = slideSize / steps;
+    this.progressBar.style.width = ((aIdx - 1) * slideSize + aStep * stepSize) + '%';
+  }
+
+  Dz.postMsg = function(aWin, aMsg) { // [arg0, [arg1...]]
+    aMsg = [aMsg];
+    for (var i = 2; i < arguments.length; i++)
+      aMsg.push(encodeURIComponent(arguments[i]));
+    aWin.postMessage(aMsg.join(" "), "*");
+  }
+
+  function init() {
+    Dz.init();
+    window.onkeydown = Dz.onkeydown.bind(Dz);
+    window.onresize = Dz.onresize.bind(Dz);
+    window.onhashchange = Dz.onhashchange.bind(Dz);
+    window.onmessage = Dz.onmessage.bind(Dz);
+  }
+
+  window.onload = init;
+</script>
+
+
+<script> // Helpers
+  if (!Function.prototype.bind) {
+    Function.prototype.bind = function (oThis) {
+
+      // closest thing possible to the ECMAScript 5 internal IsCallable
+      // function
+      if (typeof this !== "function")
+      throw new TypeError(
+        "Function.prototype.bind - what is trying to be fBound is not callable"
+      );
+
+      var aArgs = Array.prototype.slice.call(arguments, 1),
+          fToBind = this,
+          fNOP = function () {},
+          fBound = function () {
+            return fToBind.apply( this instanceof fNOP ? this : oThis || window,
+                   aArgs.concat(Array.prototype.slice.call(arguments)));
+          };
+
+      fNOP.prototype = this.prototype;
+      fBound.prototype = new fNOP();
+
+      return fBound;
+    };
+  }
+
+  var $ = (HTMLElement.prototype.$ = function(aQuery) {
+    return this.querySelector(aQuery);
+  }).bind(document);
+
+  var $$ = (HTMLElement.prototype.$$ = function(aQuery) {
+    return this.querySelectorAll(aQuery);
+  }).bind(document);
+
+  $$.forEach = function(nodeList, fun) {
+    Array.prototype.forEach.call(nodeList, fun);
+  }
+
+</script>
+<!-- vim: set fdm=marker: }}} -->
