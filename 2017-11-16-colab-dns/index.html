@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+
+<meta charset="utf-8">
+<title>Intro to the DNS</title>
+
+<!-- Your Slides -->
+<!-- One section is one slide -->
+
+<section class="title">
+  <h1>TURN OFF FLUX</h1>
+</section>
+
+<section class="title">
+  <div class="title-wrapper">
+    <hgroup>
+      <h1>Who are you?</h1>
+      <h2>Intro to the DNS</h2>
+    </hgroup>
+  </div>
+  <footer style="font-size: 50%">
+    James Socol<br>
+    Aviator Workshop<br>
+    16 November 2017
+  </footer>
+</section>
+
+<section>
+  <h2>The Domain<br>Name System</h2>
+  <details>
+    Talking about DNS.
+    Two parts: protocol and the system.
+  </details>
+</section>
+
+<section>
+  <h3>Where we're going</h3>
+  <ol class="incremental">
+    <li><em>The</em> Domain Name System</li>
+    <li>DNS protocol</li>
+  </ol>
+  <details>
+    System vs protocol.
+    What it is and why we have it.
+    How it works.
+  </details>
+</section>
+
+<section>
+  <h2><em>The</em> DNS</h2>
+  <details>
+    Start with the system.
+    Tie names to numeric addresses. Use words to find computers.
+    It's a hierarchy. We talk about TLDs.
+  </details>
+</section>
+
+<section>
+  <figure>
+    <img src="images/records.jpg" data-src="http://recordstoresworldwide.com/wp-content/uploads/2012/10/phonoluxe_slider.jpg">
+  </figure>
+</section>
+
+<section>
+  <h2>Resource Records</h2>
+  <details>
+    Building blocks of DNS.
+    Each is a tuple of information:
+  </details>
+</section>
+
+<section>
+  <h3>Resource Records (RR)</h3>
+  <ul class="incremental">
+    <li>Name</li>
+    <li>Type</li>
+    <li>Class</li>
+    <li>TTL</li>
+    <li>Data</li>
+  </ul>
+  <details>
+    Name is sometimes meaningful, like for a subdomain.
+    Types we'll go over next.
+    Class always "internet".
+    TTL: how long before you need to ask again
+    Data: depends on the type.
+  </details>
+</section>
+
+<section>
+  <h3>Record Types</h3>
+  <ul class="incremental">
+    <li>NS</li>
+    <li>A/AAAA</li>
+    <li>CNAME</li>
+    <li>MX</li>
+    <li>SOA</li>
+    <li>TXT</li>
+    <li>Etc...</li>
+  </ul>
+  <details>
+    These are just key types.
+    Will do a couple in more detail.
+    NS: another nameserver to ask.
+    A/AAAA: An IP address of a computer.
+    CNAME: An alias to another record.
+    MX: Where to send mail.
+    SOA: "Start of Authority"
+    TXT: Blob of info, used for many things.
+  </details>
+</section>
+
+<section>
+  <h3 style="margin-top: 40px">NS Records</h3>
+  <figure>
+    <img src="images/overthere.gif" data-src="https://1.bp.blogspot.com/-z29DlyZSIe8/Vz2vxfsvH6I/AAAAAAAALno/Fi2ILtogfPseU-pqSYOdMBuDwySgHwytACLcB/s1600/overthere.gif">
+  </figure>
+  <details>
+    NS Records.
+    Point you to another nameserver, usually the "authoritative" one that knows about the thing you're looking for.
+  </details>
+</section>
+
+<section>
+  <h3 style="margin-top: 40px">A/AAAA Records</h3>
+  <figure>
+    <img src="images/address.png" data-src="http://www.alliedoffices.com/skin/frontend/default/newblue/allied/images/vi-office1.png">
+  </figure>
+  <details>
+    Tells you what the IP (v4/v6) address is.
+  </details>
+</section>
+
+<section>
+  <h3 style="margin-top: 40px">CNAME Records</h3>
+  <figure>
+    <img src="images/mask.jpg" data-src="https://images-na.ssl-images-amazon.com/images/I/81h3AUtRpqL._AC_UL320_SR224,320_.jpg">
+  </figure>
+  <details>
+    Alias, means "the same IP as something else."
+    May require another lookup.
+    But if the other IP changes, the CNAME follows.
+  </details>
+</section>
+
+<section>
+  <h2>Anatomy of the DNS</h2>
+</section>
+
+<section>
+  <figure>
+    <img src="images/hierarchy.jpg" data-src="http://thecontextofthings.com/wp-content/uploads/2015/05/hierarchy.jpg">
+  </figure>
+  <details>
+    First, it's hierarchical.
+    Each "dot" creates a new potential level.
+  </details>
+</section>
+
+<section>
+  <figure>
+    <img src="images/zone.png" data-src="http://designforrisk.com/dfrr/wp-content/uploads/2014/06/kyz-logo.png">
+  </figure>
+  <details>
+    Each subtree could be a "zone".
+    Zone has a SOA record, defines and delegates authority.
+    com, wired.com are zones.
+    Will make sense as we go along.
+  </details>
+</section>
+
+<section>
+  <h2 class="incremental"><span>.com</span><span>.</span></h2>
+  <details>
+    But where does it start? We know "Top Level Domains" like "com" "net" "co" "io" "org" "edu", etc.
+    All TLDs inherit from "dot".
+    Can put "." after any domain, still valid.
+    Browsers and tools hide it, though, since it's implicit.
+  </details>
+</section>
+
+<section>
+  <figure>
+    <img src="images/root-servers.svg" data-src="https://commons.wikimedia.org/wiki/File:Root-current.svg">
+  </figure>
+  <details>
+    There are 13 "root" "servers". Each is way more than one "server". 517 total.
+    Global networks.
+    Most are controlled by the US.
+    Zone file is about 2MB.
+  </details>
+</section>
+
+<section>
+  <figure>
+    <img src="images/domain.png">
+  </figure>
+  <details>
+    So from the root, let's look at a domain. Let's take www.them.us.
+  </details>
+</section>
+
+<section>
+  <h2>DEMO TIME!</h2>
+  <details>
+    OK let's look at what these requests actually look like!
+    <code>dig</code> is a tool for DNS queries.
+    Will go over the arguments and responses.
+  </details>
+</section>
+
+<section>
+  <h2>DNS Protocol</h2>
+  <details>
+    Uses UDP by default for most things.
+    Honestly it's dense and binary and not that interesting.
+    Very old, very compact, can't see it raw.
+    Individual bits flipping.
+    tcpdump demo
+  </details>
+</section>
+
+<section>
+  <h2>Resolvers</h2>
+  <details>
+    So many.
+    ISP, your wifi/modem, Google, internal networks.
+    Recursive, do all up and down for you.
+  </details>
+</section>
+
+<section>
+  <h2>Caches</h2>
+  <details>
+    Recursive resolvers cache a lot.
+    Cache all the TLDs.
+    Cache many domains.
+    Browser/OS caches a lot, too.
+    Likely to make many requests.
+    Changes have to wait for <em>all</em> caches to clear.
+  </details>
+</section>
+
+<section>
+  <h2>Load Balancing</h2>
+  <details>
+    Multiple A records.
+    Serve different top one to different people.
+    Geo, LB, etc.
+    One tool, others like Anycast exist too.
+  </details>
+</section>
+
+<section>
+  <h2>AlterNIC</h2>
+  <details>
+    Technically possible to have alternate roots, but the whole system must use them.
+    AlterNIC was one, to prove a point.
+    Can't really use two roots in practice.
+  </details>
+</section>
+
+<section class="title">
+  <h2 style="font-size: 70px; color: #909099;">me<span style="color: #000">@jamessocol</span>.com</h2>
+  <footer style="font-size: 50%">James Socol<br>
+  Aviator Workshop<br>
+  16 November 2017</footer>
+</section>
+
+<!-- Your Style -->
+<!-- Define the style of your presentation -->
+
+<style>
+  @font-face {
+      font-family: 'MuseoSans900';
+      src: url('font/MuseoSans_900-webfont.woff') format('woff');
+      font-weight: 900;
+      font-style: normal;
+  }
+  @font-face {
+      font-family: 'CallunaRegular';
+      src: url('font/Calluna-Regular-webfont.woff') format('woff');
+      font-weight: normal;
+      font-style: normal;
+  }
+  html, .view body {
+    background-color: black;
+    counter-reset: slideidx;
+  }
+
+  body, .view section {
+    background-color: white;
+    border-radius: 12px
+    color: #111;
+  }
+  /* A section is a slide. It's size is 800x600, and this will never change */
+  section, .view head > title {
+      /* The font from Google */
+      font-family: 'CallunaRegular', arial, serif;
+      font-size: 30px;
+  }
+
+  div.title-wrapper {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+  }
+  section.title div.title-wrapper {
+      height: 480px;
+  }
+
+  .view section:after {
+    counter-increment: slideidx;
+    content: counter(slideidx, decimal-leading-zero);
+    position: absolute; bottom: -80px; right: 100px;
+    color: white;
+  }
+
+  .view head > title {
+    color: white;
+    text-align: center;
+    margin: 1em 0 1em 0;
+  }
+
+  h1, h2 {
+    margin-top: 200px;
+    text-align: center;
+    font-size: 80px;
+    font-family: 'MuseoSans900', Arial, sans-serif;
+  }
+
+  hgroup h2 {
+    font-size: 54px;
+    color: #999;
+  }
+
+  h3 {
+    margin: 100px 0 50px 100px;
+    font-family: 'MuseoSans900', Arial, sans-serif;
+  }
+
+  .title-wrapper h1, .title-wrapper h2 {
+    margin-top: initial;
+  }
+
+  ol, ul {
+      font-size: 130%;
+      margin: 50px 200px;
+  }
+
+  p {
+    margin: 75px;
+    font-size: 50px;
+  }
+
+  blockquote {
+    background-color: black;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    font-size: 60px;
+    height: 100%;
+    justify-content: center;
+    padding: 50px;
+    text-align: center;
+  }
+  blockquote:before {
+    content: open-quote;
+  }
+  blockquote:after {
+    content: close-quote;
+  }
+  pre {
+    height: 100%;
+    width: 100%;
+    background-color: white;
+    color: black;
+    font-size: 40px;
+    padding: 20px;
+  }
+
+
+  /* Figures are displayed full-page, with the caption
+     on top of the image/video */
+  figure {
+    background-color: white;
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+  figure > * {
+    position: absolute;
+  }
+  figure > img, figure > video {
+    width: 100%; height: 100%;
+    object-fit: contain;
+  }
+  figcaption {
+    margin: 70px;
+    font-size: 50px;
+  }
+
+  footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 40px;
+    text-align: right;
+    background-color: #F3F4F8;
+    border-top: 1px solid #CCC;
+  }
+
+  /* Transition effect */
+  /* Feel free to change the transition effect for original
+     animations. See here:
+     https://developer.mozilla.org/en/CSS/CSS_transitions
+     How to use CSS3 Transitions: */
+  section {
+    -moz-transition: left 400ms linear 0s;
+    -webkit-transition: left 400ms linear 0s;
+    -ms-transition: left 400ms linear 0s;
+    transition: left 400ms linear 0s;
+  }
+  .view section {
+    -moz-transition: none;
+    -webkit-transition: none;
+    -ms-transition: none;
+    transition: none;
+  }
+
+  .view section[aria-selected] {
+    border: 5px red solid;
+  }
+
+  /* Before */
+  section { left: -150%; }
+  /* Now */
+  section[aria-selected] { left: 0; }
+  /* After */
+  section[aria-selected] ~ section { left: +150%; }
+
+  /* Incremental elements */
+
+  /* By default, visible */
+  .incremental > * { opacity: 1; }
+
+  /* The current item */
+  .incremental > *[aria-selected] { opacity: 1; }
+
+  /* The items to-be-selected */
+  .incremental > *[aria-selected] ~ * { opacity: 0; }
+
+  /* The progressbar, at the bottom of the slides, show the global
+     progress of the presentation. */
+  #progress-bar {
+    height: 2px;
+    background: #AAA;
+  }
+
+  .title footer {
+    background-image: url(images/js-magenta-200.png);
+    background-position: bottom left;
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+  figure > img.center {
+    width: auto;
+    left: 25%;
+  }
+  figure > img.vscale {
+    height: auto;
+  }
+  @media print {
+  }
+</style>
+<style media="print">
+@page {
+  margin: 0;
+  size: 8in 6in;
+}
+html body {
+	height: auto;
+	position: relative;
+	width: 100%;
+}
+html body section {
+  display: block !important;
+  float: none;
+  height: 100%;
+  left: 0 !important;
+  margin: 0;
+  page: auto;
+  page-break-after: always;
+  position: relative;
+  width: 100%;
+}
+section[aria-selected] ~ section {
+  left: 0;
+}
+.incremental * {
+  display: auto;
+}
+</style>
+
+<!-- {{{{ dzslides core
+#
+#
+#     __  __  __       .  __   ___  __
+#    |  \  / /__` |    | |  \ |__  /__`
+#    |__/ /_ .__/ |___ | |__/ |___ .__/ core :€
+#
+#
+# The following block of code is not supposed to be edited.
+# But if you want to change the behavior of these slides,
+# feel free to hack it!
+#
+-->
+
+<div id="progress-bar"></div>
+
+<!-- Default Style -->
+<style>
+  * { margin: 0; padding: 0; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
+  details { display: none; }
+  body {
+    width: 800px; height: 600px;
+    margin-left: -400px; margin-top: -300px;
+    position: absolute; top: 50%; left: 50%;
+    overflow: hidden;
+    display: none;
+  }
+  .view body {
+    position: static;
+    margin: 0; padding: 0;
+    width: 100%; height: 100%;
+    display: inline-block;
+    overflow: visible; overflow-x: hidden;
+    /* undo Dz.onresize */
+    transform: none !important;
+    -moz-transform: none !important;
+    -webkit-transform: none !important;
+    -o-transform: none !important;
+    -ms-transform: none !important;
+  }
+  .view head, .view head > title { display: block }
+  section {
+    position: absolute;
+    pointer-events: none;
+    width: 100%; height: 100%;
+  }
+  .view section {
+    pointer-events: auto;
+    position: static;
+    width: 800px; height: 600px;
+    margin: -150px -200px;
+    float: left;
+
+    transform: scale(.4);
+    -moz-transform: scale(.4);
+    -webkit-transform: scale(.4);
+    -o-transform: scale(.4);
+    -ms-transform: scale(.4);
+  }
+  .view section > * { pointer-events: none; }
+  section[aria-selected] { pointer-events: auto; }
+  html { overflow: hidden; }
+  html.view { overflow: visible; }
+  body.loaded { display: block; }
+  .incremental {visibility: hidden; }
+  .incremental[active] {visibility: visible; }
+  #progress-bar{
+    bottom: 0;
+    position: absolute;
+    -moz-transition: width 400ms linear 0s;
+    -webkit-transition: width 400ms linear 0s;
+    -ms-transition: width 400ms linear 0s;
+    transition: width 400ms linear 0s;
+  }
+  .view #progress-bar {
+    display: none;
+  }
+</style>
+
+<script>
+  var Dz = {
+    remoteWindows: [],
+    idx: -1,
+    step: 0,
+    html: null,
+    slides: null,
+    progressBar : null,
+    params: {
+      autoplay: "1"
+    }
+  };
+
+  Dz.init = function() {
+    document.body.className = "loaded";
+    this.slides = Array.prototype.slice.call($$("body > section"));
+    this.progressBar = $("#progress-bar");
+    this.html = document.body.parentNode;
+    this.setupParams();
+    this.onhashchange();
+    this.setupTouchEvents();
+    this.onresize();
+    this.setupView();
+  }
+
+  Dz.setupParams = function() {
+    var p = window.location.search.substr(1).split('&');
+    p.forEach(function(e, i, a) {
+      var keyVal = e.split('=');
+      Dz.params[keyVal[0]] = decodeURIComponent(keyVal[1]);
+    });
+  // Specific params handling
+    if (!+this.params.autoplay)
+      $$.forEach($$("video"), function(v){ v.controls = true });
+  }
+
+  Dz.onkeydown = function(aEvent) {
+    // Don't intercept keyboard shortcuts
+    if (aEvent.altKey
+      || aEvent.ctrlKey
+      || aEvent.metaKey
+      || aEvent.shiftKey) {
+      return;
+    }
+    if ( aEvent.keyCode == 37 // left arrow
+      || aEvent.keyCode == 38 // up arrow
+      || aEvent.keyCode == 33 // page up
+    ) {
+      aEvent.preventDefault();
+      this.back();
+    }
+    if ( aEvent.keyCode == 39 // right arrow
+      || aEvent.keyCode == 40 // down arrow
+      || aEvent.keyCode == 34 // page down
+    ) {
+      aEvent.preventDefault();
+      this.forward();
+    }
+    if (aEvent.keyCode == 35) { // end
+      aEvent.preventDefault();
+      this.goEnd();
+    }
+    if (aEvent.keyCode == 36) { // home
+      aEvent.preventDefault();
+      this.goStart();
+    }
+    if (aEvent.keyCode == 32) { // space
+      aEvent.preventDefault();
+      this.toggleContent();
+    }
+    if (aEvent.keyCode == 70) { // f
+      aEvent.preventDefault();
+      this.goFullscreen();
+    }
+    if (aEvent.keyCode == 79) { // o
+      aEvent.preventDefault();
+      this.toggleView();
+    }
+  }
+
+  /* Touch Events */
+
+  Dz.setupTouchEvents = function() {
+    var orgX, newX;
+    var tracking = false;
+
+    var db = document.body;
+    db.addEventListener("touchstart", start.bind(this), false);
+    db.addEventListener("touchmove", move.bind(this), false);
+
+    function start(aEvent) {
+      aEvent.preventDefault();
+      tracking = true;
+      orgX = aEvent.changedTouches[0].pageX;
+    }
+
+    function move(aEvent) {
+      if (!tracking) return;
+      newX = aEvent.changedTouches[0].pageX;
+      if (orgX - newX > 100) {
+        tracking = false;
+        this.forward();
+      } else {
+        if (orgX - newX < -100) {
+          tracking = false;
+          this.back();
+        }
+      }
+    }
+  }
+
+  Dz.setupView = function() {
+    document.body.addEventListener("click", function ( e ) {
+      if (!Dz.html.classList.contains("view")) return;
+      if (!e.target || e.target.nodeName != "SECTION") return;
+
+      Dz.html.classList.remove("view");
+      Dz.setCursor(Dz.slides.indexOf(e.target) + 1);
+    }, false);
+  }
+
+  /* Adapt the size of the slides to the window */
+
+  Dz.onresize = function() {
+    var db = document.body;
+    var sx = db.clientWidth / window.innerWidth;
+    var sy = db.clientHeight / window.innerHeight;
+    var transform = "scale(" + (1/Math.max(sx, sy)) + ")";
+
+    db.style.MozTransform = transform;
+    db.style.WebkitTransform = transform;
+    db.style.OTransform = transform;
+    db.style.msTransform = transform;
+    db.style.transform = transform;
+  }
+
+
+  Dz.getDetails = function(aIdx) {
+    var s = $("section:nth-of-type(" + aIdx + ")");
+    var d = s.$("details");
+    return d ? d.innerHTML : "";
+  }
+
+  Dz.onmessage = function(aEvent) {
+    var argv = aEvent.data.split(" "), argc = argv.length;
+    argv.forEach(function(e, i, a) { a[i] = decodeURIComponent(e) });
+    var win = aEvent.source;
+    if (argv[0] === "REGISTER" && argc === 1) {
+      this.remoteWindows.push(win);
+      this.postMsg(win, "REGISTERED", document.title, this.slides.length);
+      this.postMsg(win, "CURSOR", this.idx + "." + this.step);
+      return;
+    }
+    if (argv[0] === "BACK" && argc === 1)
+      this.back();
+    if (argv[0] === "FORWARD" && argc === 1)
+      this.forward();
+    if (argv[0] === "START" && argc === 1)
+      this.goStart();
+    if (argv[0] === "END" && argc === 1)
+      this.goEnd();
+    if (argv[0] === "TOGGLE_CONTENT" && argc === 1)
+      this.toggleContent();
+    if (argv[0] === "SET_CURSOR" && argc === 2)
+      window.location.hash = "#" + argv[1];
+    if (argv[0] === "GET_CURSOR" && argc === 1)
+      this.postMsg(win, "CURSOR", this.idx + "." + this.step);
+    if (argv[0] === "GET_NOTES" && argc === 1)
+      this.postMsg(win, "NOTES", this.getDetails(this.idx));
+  }
+
+  Dz.toggleContent = function() {
+    // If a Video is present in this new slide, play it.
+    // If a Video is present in the previous slide, stop it.
+    var s = $("section[aria-selected]");
+    if (s) {
+      var video = s.$("video");
+      if (video) {
+        if (video.ended || video.paused) {
+          video.play();
+        } else {
+          video.pause();
+        }
+      }
+    }
+  }
+
+  Dz.setCursor = function(aIdx, aStep) {
+    // If the user change the slide number in the URL bar, jump
+    // to this slide.
+    aStep = (aStep != 0 && typeof aStep !== "undefined") ? "." + aStep : ".0";
+    window.location.hash = "#" + aIdx + aStep;
+  }
+
+  Dz.onhashchange = function() {
+    var cursor = window.location.hash.split("#"),
+        newidx = 1,
+        newstep = 0;
+    if (cursor.length == 2) {
+      newidx = ~~cursor[1].split(".")[0];
+      newstep = ~~cursor[1].split(".")[1];
+      if (newstep > Dz.slides[newidx - 1].$$('.incremental > *').length) {
+        newstep = 0;
+        newidx++;
+      }
+    }
+    this.setProgress(newidx, newstep);
+    if (newidx != this.idx) {
+      this.setSlide(newidx);
+    }
+    if (newstep != this.step) {
+      this.setIncremental(newstep);
+    }
+    for (var i = 0; i < this.remoteWindows.length; i++) {
+      this.postMsg(this.remoteWindows[i], "CURSOR", this.idx + "." + this.step);
+    }
+  }
+
+  Dz.back = function() {
+    if (this.idx == 1 && this.step == 0) {
+      return;
+    }
+    if (this.step == 0) {
+      this.setCursor(this.idx - 1,
+                     this.slides[this.idx - 2].$$('.incremental > *').length);
+    } else {
+      this.setCursor(this.idx, this.step - 1);
+    }
+  }
+
+  Dz.forward = function() {
+    if (this.idx >= this.slides.length &&
+        this.step >= this.slides[this.idx - 1].$$('.incremental > *').length) {
+        return;
+    }
+    if (this.step >= this.slides[this.idx - 1].$$('.incremental > *').length) {
+      this.setCursor(this.idx + 1, 0);
+    } else {
+      this.setCursor(this.idx, this.step + 1);
+    }
+  }
+
+  Dz.goStart = function() {
+    this.setCursor(1, 0);
+  }
+
+  Dz.goEnd = function() {
+    var lastIdx = this.slides.length;
+    var lastStep = this.slides[lastIdx - 1].$$('.incremental > *').length;
+    this.setCursor(lastIdx, lastStep);
+  }
+
+  Dz.toggleView = function() {
+    this.html.classList.toggle("view");
+
+    if (this.html.classList.contains("view")) {
+      $("section[aria-selected]").scrollIntoView(true);
+    }
+  }
+
+  Dz.setSlide = function(aIdx) {
+    this.idx = aIdx;
+    var old = $("section[aria-selected]");
+    var next = $("section:nth-of-type("+ this.idx +")");
+    if (old) {
+      old.removeAttribute("aria-selected");
+      var video = old.$("video");
+      if (video) {
+        video.pause();
+      }
+    }
+    if (next) {
+      next.setAttribute("aria-selected", "true");
+      if (this.html.classList.contains("view")) {
+        next.scrollIntoView();
+      }
+      var video = next.$("video");
+      if (video && !!+this.params.autoplay) {
+        video.play();
+      }
+    } else {
+      // That should not happen
+      this.idx = -1;
+      // console.warn("Slide doesn't exist.");
+    }
+  }
+
+  Dz.setIncremental = function(aStep) {
+    this.step = aStep;
+    var old = this.slides[this.idx - 1].$('.incremental > *[aria-selected]');
+    if (old) {
+      old.removeAttribute('aria-selected');
+    }
+    var incrementals = $$('.incremental');
+    if (this.step <= 0) {
+      $$.forEach(incrementals, function(aNode) {
+        aNode.removeAttribute('active');
+      });
+      return;
+    }
+    var next = this.slides[this.idx - 1].$$('.incremental > *')[this.step - 1];
+    if (next) {
+      next.setAttribute('aria-selected', true);
+      next.parentNode.setAttribute('active', true);
+      var found = false;
+      $$.forEach(incrementals, function(aNode) {
+        if (aNode != next.parentNode)
+          if (found)
+            aNode.removeAttribute('active');
+          else
+            aNode.setAttribute('active', true);
+        else
+          found = true;
+      });
+    } else {
+      setCursor(this.idx, 0);
+    }
+    return next;
+  }
+
+  Dz.goFullscreen = function() {
+    var html = $('html'),
+        requestFullscreen = html.requestFullscreen || html.requestFullScreen || html.mozRequestFullScreen || html.webkitRequestFullScreen;
+    if (requestFullscreen) {
+      requestFullscreen.apply(html);
+    }
+  }
+
+  Dz.setProgress = function(aIdx, aStep) {
+    var slide = $("section:nth-of-type("+ aIdx +")");
+    if (!slide)
+      return;
+    var steps = slide.$$('.incremental > *').length + 1,
+        slideSize = 100 / (this.slides.length - 1),
+        stepSize = slideSize / steps;
+    this.progressBar.style.width = ((aIdx - 1) * slideSize + aStep * stepSize) + '%';
+  }
+
+  Dz.postMsg = function(aWin, aMsg) { // [arg0, [arg1...]]
+    aMsg = [aMsg];
+    for (var i = 2; i < arguments.length; i++)
+      aMsg.push(encodeURIComponent(arguments[i]));
+    aWin.postMessage(aMsg.join(" "), "*");
+  }
+
+  function init() {
+    Dz.init();
+    window.onkeydown = Dz.onkeydown.bind(Dz);
+    window.onresize = Dz.onresize.bind(Dz);
+    window.onhashchange = Dz.onhashchange.bind(Dz);
+    window.onmessage = Dz.onmessage.bind(Dz);
+  }
+
+  window.onload = init;
+</script>
+
+
+<script> // Helpers
+  if (!Function.prototype.bind) {
+    Function.prototype.bind = function (oThis) {
+
+      // closest thing possible to the ECMAScript 5 internal IsCallable
+      // function
+      if (typeof this !== "function")
+      throw new TypeError(
+        "Function.prototype.bind - what is trying to be fBound is not callable"
+      );
+
+      var aArgs = Array.prototype.slice.call(arguments, 1),
+          fToBind = this,
+          fNOP = function () {},
+          fBound = function () {
+            return fToBind.apply( this instanceof fNOP ? this : oThis || window,
+                   aArgs.concat(Array.prototype.slice.call(arguments)));
+          };
+
+      fNOP.prototype = this.prototype;
+      fBound.prototype = new fNOP();
+
+      return fBound;
+    };
+  }
+
+  var $ = (HTMLElement.prototype.$ = function(aQuery) {
+    return this.querySelector(aQuery);
+  }).bind(document);
+
+  var $$ = (HTMLElement.prototype.$$ = function(aQuery) {
+    return this.querySelectorAll(aQuery);
+  }).bind(document);
+
+  $$.forEach = function(nodeList, fun) {
+    Array.prototype.forEach.call(nodeList, fun);
+  }
+
+</script>
+<!-- vim: set fdm=marker: }}} -->

@@ -1,0 +1,35 @@
+# Let's start at a root server.
+dig @j.root-servers.net. www.them.us any
+# Authority section, no Answer, gives us NS records.
+# Additional section bootstraps the rest of the lookups. Can't lookup .us. if you need to know where is .us.
+
+# OK, let's ask one of those servers.
+dig @b.cctld.us. www.them.us any
+# Still authority but no answer, and more NS records.
+
+# Let's ask one of the them.us zone NS, but just leave off the subdomain for now
+dig @ns-528.awsdns-02.net. them.us any
+# A bunch of records, including A, NS, SOA.
+
+# Back to subdomain
+dig @ns-528.awsdns-02.net. www.them.us any
+# Authority AND answer!
+
+# A lot of work. Let's try a different kind of server, a resolver:
+# 8.8.8.8 is Google/public DNS resolver.
+dig @8.8.8.8 www.them.us any
+# Answer, but no authority.
+
+# Let's do the defaultest thing
+dig www.them.us
+# Uses computer/network defined resolver.
+# Defaults to "IN A" not "IN ANY"
+# Gets a CNAME but also the A records for that CNAME!
+
+# Try that query against the authority?
+dig @ns-528.awsdns-02.net. www.them.us A
+# Just the CNAME. Authoritative but not recursive/resolver.
+# Caches in recursive resolvers lead to propagation time.
+
+# tcpdump
+sudo tcpdump -nnXSs 0 udp port 53

@@ -1,0 +1,50 @@
+# Who are you? Intro to the DNS
+
+- The DNS!
+- Where are we going?
+  - There's a difference between the protocol and the system itself.
+- _The_ Domain Name _System_
+  - Why?
+    - Numbers suck. Map to names.
+    - Distribute and delegate control of parts of it.
+  - Resource Record
+    - Building block of DNS
+    - (Name, Class, Type, Data)
+    - e.g. (@, 1, A, "1.2.3.4")
+    - Key types (A/AAAA, NS, MX, CNAME, SOA, TXT)
+  - Hierarchical
+    - TLDs (.com, .org, .net, .uk, etc)
+    - A section makes up a "Zone"
+    - Root of the hierarchy (will come back)
+  - Anatomy of hierarchy and authority
+    - e.g. www.wired.com
+    - NS for .com knows about NS record for wired.com
+    - NS for wired.com knows about record www.wired.com
+    - could have NS for www that knew about something.www.wired.com
+  - Root hierarchy
+    - What if you don't know about ".com"?
+    - "13" root servers
+    - Each a global network of servers
+  - Demo time!
+    - dig is a tool
+    - dig @root www.wired.com any (only points us at com)
+    - dig @com www.wired.com any (only gives us nameservers)
+    - dig @wired-ns www.wired.com any (gives us useful records)
+    - dig @8.8.8.8 www.wired.com any (answer w/o authority)
+  - Alternate roots exist
+- The DNS protocol
+  - Dense, binary
+    - Show bytes 0-31
+    - tcpdump
+      - it's a tool too
+      - it does things
+    - demo again
+  - Structure
+    - Question section
+    - Answer section
+    - Authority section
+  - Recursion
+    - Servers can make requests
+    - Cache for TTL
+    - Non-authoritative answers
+  - Propagation
