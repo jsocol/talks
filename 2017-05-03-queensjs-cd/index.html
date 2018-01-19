@@ -619,6 +619,17 @@ section[aria-selected] ~ section {
 }
 </style>
 
+  <script>
+  window.addEventListener('load', function () {
+    const images = Array.from(document.querySelectorAll('img[data-src]'));
+    images.forEach((el) => {
+      if (img.src) {
+        return;
+      }
+      el.src = el.dataset.src;
+    });
+  }, true);
+  </script>
 <!-- {{{{ dzslides core
 #
 #
