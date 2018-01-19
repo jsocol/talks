@@ -622,11 +622,11 @@ section[aria-selected] ~ section {
   <script>
   window.addEventListener('load', function () {
     const images = Array.from(document.querySelectorAll('img[data-src]'));
-    images.forEach((el) => {
+    images.forEach((img) => {
       if (img.src) {
         return;
       }
-      el.src = el.dataset.src;
+      img.src = img.dataset.src;
     });
   }, true);
   </script>
