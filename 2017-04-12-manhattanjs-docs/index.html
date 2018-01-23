@@ -634,7 +634,6 @@ Types
 
 <!-- Your Style -->
 <!-- Define the style of your presentation -->
-
 <style>
   @font-face {
       font-family: 'MuseoSans900';
@@ -836,6 +835,17 @@ Types
     color: #000;
   }
 </style>
+
+  <script>
+  window.addEventListener('load', function () {
+    const images = Array.from(document.querySelectorAll('img[data-src]'));
+    images.forEach((img) => {
+      if (img.naturalHeight === 0 && img.naturalWidth === 0) {
+        img.src = img.dataset.src;
+      }
+    });
+  }, true);
+  </script>
 
 <!-- {{{{ dzslides core
 #
